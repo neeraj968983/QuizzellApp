@@ -70,6 +70,7 @@ class StudentHomePage : AppCompatActivity() {
                 }
                 R.id.Privacy -> {
                     intent = Intent(this,Privacy::class.java)
+                    intent.putExtra("usernameFromLogin",i.getStringExtra("usernameFromLogin"))
                     startActivity(intent)
                 }
                 R.id.Ranking -> Toast.makeText(applicationContext, "Ranking Page is under progress", Toast.LENGTH_LONG).show()

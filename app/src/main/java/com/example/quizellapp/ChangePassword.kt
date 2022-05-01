@@ -40,6 +40,7 @@ class ChangePassword : AppCompatActivity() {
 
         var i = intent
         var username = i.getStringExtra("usernameFromLogin")
+        var switchValue = i.getStringExtra("switchValue")
 
         var databasehelper:DatabaseHelperClass = DatabaseHelperClass(this)
 
@@ -56,16 +57,18 @@ class ChangePassword : AppCompatActivity() {
                 if (checkpassword){
                     Snackbar.make(findViewById(R.id.changePasswordPage),"Password Changed Successfully!",Snackbar.LENGTH_LONG).show()
                     Handler(Looper.getMainLooper()).postDelayed({
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                            notificationChannel = NotificationChannel(channelId, description, NotificationManager.IMPORTANCE_HIGH)
-                            notificationChannel.lightColor = Color.BLUE
-                            notificationManager.createNotificationChannel(notificationChannel)
-                            builder = Notification.Builder(this, channelId).setContentTitle("Privacy Alert ")
-                                    .setContentText("Your password has been changed!")
-                                    .setSmallIcon(R.drawable .quizzelllogo)
-                                    .setLargeIcon(BitmapFactory.decodeResource(this.resources, R.drawable.ic_launcher_background))
+                        if (switchValue.equals("true")){
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                                notificationChannel = NotificationChannel(channelId, description, NotificationManager.IMPORTANCE_HIGH)
+                                notificationChannel.lightColor = Color.BLUE
+                                notificationManager.createNotificationChannel(notificationChannel)
+                                builder = Notification.Builder(this, channelId).setContentTitle("Privacy Alert ")
+                                        .setContentText("Your password has been changed!")
+                                        .setSmallIcon(R.drawable .quizzelllogo)
+                                        .setLargeIcon(BitmapFactory.decodeResource(this.resources, R.drawable.ic_launcher_background))
+                            }
+                            notificationManager.notify(12345, builder.build())
                         }
-                        notificationManager.notify(12345, builder.build())
                         onBackPressed()
                     },3500)
                 }
