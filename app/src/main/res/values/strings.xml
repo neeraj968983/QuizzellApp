@@ -1,0 +1,65 @@
+<resources>
+    <string name="app_name">quizellapp</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+
+    <string name="old_password">Old Password</string>
+    <string name="new_password">New Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="update">Update</string>
+    <string name="checkBox">checkBox</string>
+    <string name="name">name</string>
+    <string name="password">password</string>
+
+    <string-array name="Category">
+        <item>Aptitude</item>
+        <item>Banking Exam</item>
+        <item>Biology</item>
+        <item>CDS Related</item>
+        <item>Chemistry</item>
+        <item>Civil Services</item>
+        <item>Coding</item>
+        <item>Data Structure</item>
+        <item>General Knowledge</item>
+        <item>Interview Related</item>
+        <item>Literature and Grammar</item>
+        <item>Logical Reasoning</item>
+        <item>Mathematics</item>
+        <item>NDA Related</item>
+        <item>Physics</item>
+        <item>SSC</item>
+    </string-array>
+
+    <string-array name="Attempts">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
+
+    <string-array name="QuizType">
+        <item>Free</item>
+        <item>Paid</item>
+    </string-array>
+
+    <string-array name="QuizPurpose">
+        <item>Normal Quiz</item>
+        <item>Coaching/Institute</item>
+        <item>School</item>
+        <item>University/College</item>
+    </string-array>
+
+    <string-array name="gender">
+        <item>Male</item>
+        <item>Female</item>
+        <item>Other</item>
+    </string-array>
+
+    <string-array name="options">
+        <item>A</item>
+        <item>B</item>
+        <item>C</item>
+        <item>D</item>
+    </string-array>
+</resources>

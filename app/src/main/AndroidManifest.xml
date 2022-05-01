@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.quizellapp">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Quizellapp">
+        <activity android:name=".PrivacyMentor"></activity>
+        <activity android:name=".ViewProfile_Mentor" />
+        <activity android:name=".EditProfile_Mentor" />
+        <activity android:name=".ViewProfile" />
+        <activity android:name=".EditProfile" />
+        <activity android:name=".QuizInfo" />
+        <activity android:name=".Privacy" />
+        <activity android:name=".ChangePassword" />
+        <activity android:name=".AboutUs" />
+        <activity android:name=".QuizQuestionCreation" />
+        <activity android:name=".QuizCreationInfo" />
+        <activity android:name=".NewQuizzes" />
+        <activity android:name=".FinishedQuizzes" />
+        <activity android:name=".QuizTestPage" />
+        <activity android:name=".Category" />
+        <activity android:name=".LanguageSelection" />
+        <activity android:name=".StudentHomePage" />
+        <activity android:name=".MentorDashboard" />
+        <activity android:name=".WhoAreYou" />
+        <activity android:name=".RegisterPage" />
+        <activity android:name=".LoginPage" />
+        <activity android:name=".LoginRegisterPage" />
+        <activity android:name=".ad4" />
+        <activity android:name=".ad3" />
+        <activity android:name=".ad2" />
+        <activity android:name=".ad1" />
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
+    </application>
+
+</manifest>

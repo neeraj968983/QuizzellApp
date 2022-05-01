@@ -1,0 +1,126 @@
+<androidx.drawerlayout.widget.DrawerLayout
+    android:id="@+id/drawerLayout"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".NewQuizzes">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="60dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/studentdashboard"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New Quizzes"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textSize="35sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.207"
+            app:layout_constraintHorizontal_bias="0.47"/>
+
+        <TableLayout
+            android:id="@+id/tableLayout"
+            android:layout_width="340sp"
+            android:layout_height="400sp"
+            android:layout_marginTop="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.495"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.75">
+
+            <TableRow>
+
+                <Button
+                    android:layout_width="340sp"
+                    android:layout_height="60sp"
+                    android:text="Quiz1" />
+            </TableRow>
+
+            <TableRow>
+
+                <Button
+                    android:layout_width="340sp"
+                    android:layout_height="60sp"
+                    android:text="Quiz2" />
+            </TableRow>
+
+            <TableRow>
+
+                <Button
+                    android:layout_width="340sp"
+                    android:layout_height="60sp"
+                    android:text="Quiz3" />
+            </TableRow>
+
+            <TableRow>
+
+                <Button
+                    android:layout_width="340sp"
+                    android:layout_height="60sp"
+                    android:text="Quiz1" />
+            </TableRow>
+
+            <TableRow>
+
+                <Button
+                    android:layout_width="340sp"
+                    android:layout_height="60sp"
+                    android:text="Quiz2" />
+            </TableRow>
+
+            <TableRow>
+
+                <Button
+                    android:layout_width="340sp"
+                    android:layout_height="60sp"
+                    android:text="Quiz3" />
+            </TableRow>
+        </TableLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="60sp"
+        android:background="@color/toolbarColor">
+        <ImageView
+            android:layout_width="80sp"
+            android:layout_height="60sp"
+            android:src="@drawable/frame1"
+            android:layout_marginLeft="140sp"/>
+
+    </androidx.appcompat.widget.Toolbar>
+    </FrameLayout>
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true"
+        app:menu="@menu/student_new_quiz_menu"/>
+
+
+</androidx.drawerlayout.widget.DrawerLayout>

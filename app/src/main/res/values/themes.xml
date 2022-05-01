@@ -1,0 +1,26 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.Quizellapp" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+            <!-- Primary brand color. -->
+            <item name="colorPrimary">@color/purple_500</item>
+            <item name="colorPrimaryVariant">@color/purple_700</item>
+            <item name="colorOnPrimary">@color/white</item>
+            <!-- Secondary brand color. -->
+            <item name="colorSecondary">#212F3C</item>
+            <item name="colorSecondaryVariant">#212F3C</item>
+            <item name="colorOnSecondary">@color/black</item>
+            <item name="drawerArrowStyle">@style/DrawerVBage_ArrowStyle</item>
+            <!-- Status bar color. -->
+            <item name="android:statusBarColor" tools:targetApi="l">?attr/colorSecondary</item>
+            <item name="android:navigationBarColor">?attr/colorSecondary</item>
+            <!-- Customize your theme here. -->
+    </style>
+    <style name="Theme.appbar" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="actionMenuTextColor">@color/white</item>
+    </style>
+
+    <style name="DrawerVBage_ArrowStyle" parent="@style/Widget.AppCompat.DrawerArrowToggle">
+        <item name="spinBars">true</item>
+        <item name="color">@color/white</item>
+    </style>
+</resources>

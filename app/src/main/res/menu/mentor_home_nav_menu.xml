@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view"
+    >
+    <item
+        android:id="@+id/View_Profile"
+        android:title="View Profile"
+        android:icon="@drawable/ic_baseline_perm_identity_24"/>
+    <item
+        android:id="@+id/Edit_Profile"
+        android:title="Edit Profile"
+        android:icon="@drawable/ic_baseline_person_add_24"/>
+
+    <item
+        android:id="@+id/AccountSummary"
+        android:title="Account Summary"
+        android:icon="@drawable/ic_baseline_graphic_eq_24"
+        />
+    <item
+        android:id="@+id/Privacy"
+        android:title="Privacy"
+        android:icon="@drawable/ic_baseline_security_24"/>
+
+    <item
+        android:id="@+id/Quizzes"
+        android:title="Quizzes"
+        android:icon="@drawable/ic_baseline_view_list_24"
+        >
+        <menu>
+            <item
+                android:id="@+id/Create_Quiz"
+                android:title="Create Quiz"
+                android:icon="@drawable/ic_baseline_edit_note_24"
+                />
+            <item
+                android:id="@+id/Your_Quizzes"
+                android:title="Your Quizzes"
+                android:icon="@drawable/ic_baseline_view_list_24"
+                />
+        </menu>
+    </item>
+
+
+    <item
+        android:id="@+id/Help"
+        android:title="Help"
+        android:icon="@drawable/ic_baseline_perm_identity_24">
+        <menu>
+            <item
+                android:id="@+id/QA"
+                android:title="Question/Answer"
+                android:icon="@drawable/ic_baseline_question_answer_24"
+                />
+            <item
+                android:id="@+id/ChatUs"
+                android:title="Chat Us"
+                android:icon="@drawable/ic_baseline_chat_24"/>
+            <item
+                android:id="@+id/ContactUS"
+                android:title="Contact Us"
+                android:icon="@drawable/ic_baseline_contact_phone_24"/>
+            <item
+                android:id="@+id/AboutUS"
+                android:title="About Us"
+                android:icon="@drawable/ic_baseline_info_24"/>
+        </menu>
+    </item>
+
+</menu>
