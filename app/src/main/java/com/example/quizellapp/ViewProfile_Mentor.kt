@@ -21,9 +21,11 @@ class ViewProfile_Mentor : AppCompatActivity() {
         var dateOfBirth:TextView = findViewById(R.id.update_editprofile13)
         var contact:TextView = findViewById(R.id.update_editprofile14)
         var uname = i.getStringExtra("usernameFromLogin")
+        var mentorName = i.getStringExtra("mentorName")
 
         var (email,dob,cont) = userDetailsFetchUp.getDetails(uname)
 
+        name.setText(""+mentorName)
         username.setText(""+uname)
         emailid.setText(""+email)
         dateOfBirth.setText(""+dob)

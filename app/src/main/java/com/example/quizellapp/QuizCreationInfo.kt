@@ -17,7 +17,7 @@ class QuizCreationInfo : AppCompatActivity() {
 
         val username = i.getStringExtra("usernameFromLogin")
         val mentorName:TextView = findViewById(R.id.MentorName)
-        mentorName.setText(""+i.getStringExtra("MentorName"))
+        mentorName.setText("owner: "+i.getStringExtra("MentorName"))
         val spin: Spinner = findViewById(R.id.spinner)
         val Attempts: Spinner = findViewById(R.id.spinner2)
         val quizType:Spinner = findViewById(R.id.spinner3)
@@ -67,6 +67,7 @@ class QuizCreationInfo : AppCompatActivity() {
             var quizDetail:Quizdetail = Quizdetail(username,mentorName.text.toString(),quizName.text.toString(),spin.selectedItem.toString(),subject.text.toString(),duration.text.toString().toInt(),date.text.toString(),time.text.toString(),Attempts.selectedItem.toString().toInt(),quizType.selectedItem.toString(),quizPurpose.selectedItem.toString(),totalQuestion.text.toString().toInt(),maximumMarks.text.toString().toInt(),guideline.text.toString())
             quizInfoDatabase.addQuizDetail(quizDetail)
             var intent:Intent = Intent(this,QuizQuestionCreation::class.java)
+            intent.putExtra("usernameFromLogin",username)
             intent.putExtra("TotalQuestion",totalQuestion.text.toString().toInt())
             intent.putExtra("QuizName",quizName.text.toString())
             startActivity(intent)

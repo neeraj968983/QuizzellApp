@@ -92,8 +92,9 @@ class UserExtraDetails(context: Context) : SQLiteOpenHelper(context, databaseNam
             gender = cursor.getString(3)
             address = cursor.getString(4)
         }
-        return arrayOf(fname,lname,gender,address)
         dbConnect.close()
+        return arrayOf(fname,lname,gender,address)
+
     }
 
 }

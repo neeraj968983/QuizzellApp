@@ -21,7 +21,14 @@ class MentorDashboard : AppCompatActivity() {
         var navView : NavigationView = findViewById(R.id.nav_view)
         var logout:LinearLayout = findViewById(R.id.logout)
 
+        var userextradetails:UserExtraDetails = UserExtraDetails(this)
+
+
         var i = intent
+        System.out.println(i.getStringExtra("usernameFromLogin"))
+        var (a,b,c,d) = userextradetails.fetchData(i.getStringExtra("usernameFromLogin"))
+        System.out.println("A = $a\n B = $b\n C = $c\n D = $d")
+        var mentorName = (a.toString() + " " + b.toString())
 
         toggle = ActionBarDrawerToggle(this,drawerLayout,findViewById(R.id.toolbar),R.string.open,R.string.close)
         drawerLayout.addDrawerListener(toggle)
@@ -36,6 +43,7 @@ class MentorDashboard : AppCompatActivity() {
                 R.id.View_Profile -> {
                     var intent: Intent = Intent(this,ViewProfile_Mentor::class.java)
                     intent.putExtra("usernameFromLogin",i.getStringExtra("usernameFromLogin"))
+                    intent.putExtra("mentorName", mentorName)
                     startActivity(intent)
                 }
                 R.id.Edit_Profile -> {
@@ -51,9 +59,9 @@ class MentorDashboard : AppCompatActivity() {
                 }
 
                 R.id.Create_Quiz -> {
-                    var intent: Intent = Intent(this,QuizCreationInfo::class.java)
+                    var intent: Intent = Intent(this, QuizCreationInfo::class.java)
                     intent.putExtra("usernameFromLogin", i.getStringExtra("usernameFromLogin"))
-                    intent.putExtra("MentorName",i.getStringExtra("MentorName"))
+                    intent.putExtra("MentorName",mentorName)
                     startActivity(intent)
                 }
                 R.id.Your_Quizzes -> Toast.makeText(applicationContext, "This session is under progress", Toast.LENGTH_LONG).show()
