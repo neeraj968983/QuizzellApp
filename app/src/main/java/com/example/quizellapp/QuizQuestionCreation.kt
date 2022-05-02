@@ -18,7 +18,6 @@ class QuizQuestionCreation : AppCompatActivity() {
         var totalCount = i.getIntExtra("TotalQuestion",0)
         var username = i.getStringExtra("usernameFromLogin")
         var count:Int = 1
-        var flag = 0
 
         var nextques:Button = findViewById(R.id.NextButton)
 
@@ -42,30 +41,32 @@ class QuizQuestionCreation : AppCompatActivity() {
 
             questionNumber.setText("Question $count: ")
         nextques.setOnClickListener(){
-            if(totalCount>count){
+            if(totalCount>=count){
                 var question:Question = Question(quizName,ques.text.toString(),opt1.text.toString(),opt2.text.toString(),opt3.text.toString(),opt4.text.toString(),correctOption.selectedItem.toString())
                 questionDatabase.addQuestion(question)
-                count += 1
                 System.out.println("total Count : $totalCount and count : $count")
-                questionNumber.setText("Question $count: ")
                 ques.setText("")
                 opt1.setText("")
                 opt2.setText("")
                 opt3.setText("")
                 opt4.setText("")
-                flag = 1
+
+                if(totalCount==count){
+                    questionNumber.setText("")
+                    Handler(Looper.getMainLooper()).postDelayed({
+                        nextques.setText("Done!")
+                        questionNumber.setText("Data inserted successfully!")
+                        var intent:Intent = Intent(this,MentorDashboard::class.java)
+                        intent.putExtra("usernameFromLogin", username )
+                        startActivity(intent)
+                    }, 1000)
+                }
+                else{
+                    count++
+                    questionNumber.setText("Question $count: ")
+
+                }
             }
-            else{
-                Handler(Looper.getMainLooper()).postDelayed({
-                    nextques.setText("Done!")
-                    var intent:Intent = Intent(this,MentorDashboard::class.java)
-                    intent.putExtra("usernameFromLogin", username )
-                    startActivity(intent)
-                }, 2000)
-            }
-
-
-
             }
         }
     }
