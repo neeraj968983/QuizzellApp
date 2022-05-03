@@ -2,7 +2,9 @@ package com.example.quizellapp
 
 import android.content.Intent
 import android.graphics.Color
-import androidx.appcompat.app.AppCompatActivity
+import android.media.MediaPlayer
+import android.media.RingtoneManager
+import android.net.Uri
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.os.Handler
@@ -10,8 +12,10 @@ import android.os.Looper
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import java.math.RoundingMode
 import java.text.DecimalFormat
+
 
 class QuizTestPage : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,6 +28,7 @@ class QuizTestPage : AppCompatActivity() {
         var quiztitle:TextView = findViewById(R.id.TestQuizName)
         var category:TextView = findViewById(R.id.Testcategory)
         var subject:TextView = findViewById(R.id.TestSubject)
+        var MM:TextView = findViewById(R.id.Maxmarks)
         var duration:TextView = findViewById(R.id.TestDuration)
 
 
@@ -44,23 +49,32 @@ class QuizTestPage : AppCompatActivity() {
         durationTime = durationTime*1000*60
         minute = (durationTime.toInt()/60000)
 
-        System.out.println(" minute: $minute\n seconds: $second")
 
-        quiztitle.setText(""+quizInfo.quizname)
-        category.setText(""+quizInfo.category)
-        subject.setText(""+quizInfo.subject)
+        quiztitle.setText("" + quizInfo.quizname)
+        category.setText("" + quizInfo.category)
+        subject.setText("Topic: " + quizInfo.subject)
+        MM.setText("Max. Marks: "+ quizInfo.maxmarks)
 
         object : CountDownTimer(durationTime, 1000){
             override fun onTick(millisUntilFinished: Long) {
+                if ((millisUntilFinished.toInt()<10000)&&(millisUntilFinished.toInt()>9000)){
+                    duration.setTextColor(Color.RED)
+                    val alarmSound: Uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
+                    val mp: MediaPlayer = MediaPlayer.create(applicationContext, alarmSound)
+                    mp.start()
+                }
 
-
-                duration.setText("Time remaining: ${df.format(millisUntilFinished/60000)}:" + df.format((millisUntilFinished/1000)%60))
+                duration.setText("Time remaining: ${df.format(millisUntilFinished / 60000)}:" + df.format((millisUntilFinished / 1000) % 60))
             }
 
             // Callback function, fired
             // when the time is up
             override fun onFinish() {
-                duration.setText("done!")
+                duration.setText("Time's Up")
+                val handler = Handler(Looper.getMainLooper())
+                handler.postDelayed({
+                    goStudentHomePage()
+                }, 2000)
             }
 
         }.start()
@@ -75,17 +89,16 @@ class QuizTestPage : AppCompatActivity() {
         var maxMarks:Int = quizInfo.maxmarks
         var marksPerQuestion = maxMarks/totalQuestion
 
-        System.out.println("maxMarks : $maxMarks \n MarksPerQuestion : $marksPerQuestion")
 
         var questions:ArrayList<QuestionAndOption> = questionDatabase.getQuestionList(quizname)
 
 
         if (totalQuestion>count){
-            ques.setText(""+questions[count].quest)
-            op1.setText(""+questions[count].option1)
-            op2.setText(""+questions[count].option2)
-            op3.setText(""+questions[count].option3)
-            op4.setText(""+questions[count].option4)
+            ques.setText("Question ${count+1}:" + questions[count].quest)
+            op1.setText("" + questions[count].option1)
+            op2.setText("" + questions[count].option2)
+            op3.setText("" + questions[count].option3)
+            op4.setText("" + questions[count].option4)
         }
 
         op1.setOnClickListener{
@@ -132,6 +145,7 @@ class QuizTestPage : AppCompatActivity() {
                         op3.setTextColor(Color.WHITE)
                         op4.setBackgroundColor(Color.RED)
                         op4.setTextColor(Color.WHITE)
+                        optionSelected="E"
                     }
                     "B" -> {
                         op2.setBackgroundColor(Color.GREEN)
@@ -142,6 +156,7 @@ class QuizTestPage : AppCompatActivity() {
                         op3.setTextColor(Color.WHITE)
                         op4.setBackgroundColor(Color.RED)
                         op4.setTextColor(Color.WHITE)
+                        optionSelected="E"
                     }
                     "C" -> {
                         op3.setBackgroundColor(Color.GREEN)
@@ -152,6 +167,7 @@ class QuizTestPage : AppCompatActivity() {
                         op1.setTextColor(Color.WHITE)
                         op4.setBackgroundColor(Color.RED)
                         op4.setTextColor(Color.WHITE)
+                        optionSelected="E"
                     }
                     "D" -> {
                         op4.setBackgroundColor(Color.GREEN)
@@ -162,39 +178,53 @@ class QuizTestPage : AppCompatActivity() {
                         op3.setTextColor(Color.WHITE)
                         op1.setBackgroundColor(Color.RED)
                         op1.setTextColor(Color.WHITE)
+                        optionSelected="E"
                     }
 
                 }
             }
             else{
                 when(optionSelected){
-                    "A" ->{
+                    "A" -> {
                         op1.setTextColor(Color.WHITE)
                         op1.setBackgroundColor(Color.RED)
+                        optionSelected="E"
                     }
-                    "B" ->{
+                    "B" -> {
                         op2.setTextColor(Color.WHITE)
                         op2.setBackgroundColor(Color.RED)
+                        optionSelected="E"
                     }
-                    "C" ->{
+                    "C" -> {
                         op3.setTextColor(Color.WHITE)
                         op3.setBackgroundColor(Color.RED)
+                        optionSelected="E"
                     }
-                    "D" ->{
+                    "D" -> {
                         op4.setTextColor(Color.WHITE)
                         op4.setBackgroundColor(Color.RED)
+                        optionSelected="E"
+                    }
+                    "E" ->{
+                        op1.setBackgroundColor(Color.rgb(255,165,0))
+                        op1.setTextColor(Color.WHITE)
+                        op2.setBackgroundColor(Color.rgb(255,165,0))
+                        op2.setTextColor(Color.WHITE)
+                        op3.setBackgroundColor(Color.rgb(255,165,0))
+                        op3.setTextColor(Color.WHITE)
+                        op4.setBackgroundColor(Color.rgb(255,165,0))
+                        op4.setTextColor(Color.WHITE)
                     }
                 }
             }
-            System.out.println("Question $count Marks : $marksPerQuestion and you got total marks till $marksGained")
             if(totalQuestion-1>count){
                 count++
                 Handler(Looper.getMainLooper()).postDelayed({
-                    ques.setText(""+questions[count].quest)
-                    op1.setText(""+questions[count].option1)
-                    op2.setText(""+questions[count].option2)
-                    op3.setText(""+questions[count].option3)
-                    op4.setText(""+questions[count].option4)
+                    ques.setText("" + questions[count].quest)
+                    op1.setText("" + questions[count].option1)
+                    op2.setText("" + questions[count].option2)
+                    op3.setText("" + questions[count].option3)
+                    op4.setText("" + questions[count].option4)
                     op1.setBackgroundColor(Color.WHITE)
                     op1.setTextColor(Color.BLACK)
                     op2.setBackgroundColor(Color.WHITE)
@@ -211,8 +241,7 @@ class QuizTestPage : AppCompatActivity() {
                 System.out.println("Total marks: $marksGained")
                 val handler = Handler(Looper.getMainLooper())
                 handler.postDelayed({
-                    var intent:Intent = Intent(this,StudentHomePage::class.java)
-                    startActivity(intent)
+                    goStudentHomePage()
                 }, 2000)
 
             }
@@ -222,7 +251,12 @@ class QuizTestPage : AppCompatActivity() {
 
     }
 
+    private fun goStudentHomePage() {
+        var intent:Intent = Intent(this, StudentHomePage::class.java)
+        startActivity(intent)
+    }
+
     override fun onBackPressed() {
-        Toast.makeText(this,"Moving back is not allowed!",Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "Moving back is not allowed!", Toast.LENGTH_SHORT).show()
     }
 }
