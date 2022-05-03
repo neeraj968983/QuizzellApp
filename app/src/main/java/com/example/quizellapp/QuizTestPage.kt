@@ -18,6 +18,12 @@ import java.text.DecimalFormat
 
 
 class QuizTestPage : AppCompatActivity() {
+    lateinit var quizname:String
+    var marksGained:Int = 0
+    var attempted:Int = 0
+    var correct:Int = 0
+    var wrong:Int = 0
+    var skipped:Int = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_quiz_test_page)
@@ -37,17 +43,14 @@ class QuizTestPage : AppCompatActivity() {
 
         var i = intent
         var count = 0
-        var quizname = i.getStringExtra("QuizName")
+        quizname = i.getStringExtra("QuizName").toString()
         var totalQuestion = quizInfoDatabase.totalQuestions(quizname)
         var quizInfo:Quizdetail = quizInfoDatabase.quizAllData(quizname)
 
-        var minute:Int
-        var second:Int = 59
         val df = DecimalFormat("00")
         df.roundingMode = RoundingMode.DOWN
         var durationTime = quizInfo.duration.toLong()
         durationTime = durationTime*1000*60
-        minute = (durationTime.toInt()/60000)
 
 
         quiztitle.setText("" + quizInfo.quizname)
@@ -55,7 +58,7 @@ class QuizTestPage : AppCompatActivity() {
         subject.setText("Topic: " + quizInfo.subject)
         MM.setText("Max. Marks: "+ quizInfo.maxmarks)
 
-        object : CountDownTimer(durationTime, 1000){
+        var timer = object : CountDownTimer(durationTime, 1000){
             override fun onTick(millisUntilFinished: Long) {
                 if ((millisUntilFinished.toInt()<10000)&&(millisUntilFinished.toInt()>9000)){
                     duration.setTextColor(Color.RED)
@@ -73,7 +76,7 @@ class QuizTestPage : AppCompatActivity() {
                 duration.setText("Time's Up")
                 val handler = Handler(Looper.getMainLooper())
                 handler.postDelayed({
-                    goStudentHomePage()
+                    goStudentHomePage(marksGained,attempted,correct,wrong,skipped)
                 }, 2000)
             }
 
@@ -85,7 +88,7 @@ class QuizTestPage : AppCompatActivity() {
         var op3:Button = findViewById(R.id.Option3)
         var op4:Button = findViewById(R.id.Option4)
         var optionSelected = "E"
-        var marksGained = 0
+        marksGained = 0
         var maxMarks:Int = quizInfo.maxmarks
         var marksPerQuestion = maxMarks/totalQuestion
 
@@ -137,6 +140,8 @@ class QuizTestPage : AppCompatActivity() {
                 marksGained = marksGained + marksPerQuestion
                 when(optionSelected){
                     "A" -> {
+                        attempted = attempted+1
+                        correct = correct+1
                         op1.setBackgroundColor(Color.GREEN)
                         op1.setTextColor(Color.WHITE)
                         op2.setBackgroundColor(Color.RED)
@@ -148,6 +153,8 @@ class QuizTestPage : AppCompatActivity() {
                         optionSelected="E"
                     }
                     "B" -> {
+                        attempted = attempted+1
+                        correct = correct+1
                         op2.setBackgroundColor(Color.GREEN)
                         op2.setTextColor(Color.WHITE)
                         op1.setBackgroundColor(Color.RED)
@@ -159,6 +166,8 @@ class QuizTestPage : AppCompatActivity() {
                         optionSelected="E"
                     }
                     "C" -> {
+                        attempted = attempted+1
+                        correct = correct+1
                         op3.setBackgroundColor(Color.GREEN)
                         op3.setTextColor(Color.WHITE)
                         op2.setBackgroundColor(Color.RED)
@@ -170,6 +179,8 @@ class QuizTestPage : AppCompatActivity() {
                         optionSelected="E"
                     }
                     "D" -> {
+                        attempted = attempted+1
+                        correct = correct+1
                         op4.setBackgroundColor(Color.GREEN)
                         op4.setTextColor(Color.WHITE)
                         op2.setBackgroundColor(Color.RED)
@@ -186,26 +197,35 @@ class QuizTestPage : AppCompatActivity() {
             else{
                 when(optionSelected){
                     "A" -> {
+                        attempted = attempted+1
+                        wrong = wrong+1
                         op1.setTextColor(Color.WHITE)
                         op1.setBackgroundColor(Color.RED)
                         optionSelected="E"
                     }
                     "B" -> {
+                        attempted = attempted+1
+                        wrong = wrong+1
                         op2.setTextColor(Color.WHITE)
                         op2.setBackgroundColor(Color.RED)
                         optionSelected="E"
                     }
                     "C" -> {
+                        attempted = attempted+1
+                        wrong = wrong+1
                         op3.setTextColor(Color.WHITE)
                         op3.setBackgroundColor(Color.RED)
                         optionSelected="E"
                     }
                     "D" -> {
+                        attempted = attempted+1
+                        wrong = wrong+1
                         op4.setTextColor(Color.WHITE)
                         op4.setBackgroundColor(Color.RED)
                         optionSelected="E"
                     }
                     "E" ->{
+                        skipped = skipped+1
                         op1.setBackgroundColor(Color.rgb(255,165,0))
                         op1.setTextColor(Color.WHITE)
                         op2.setBackgroundColor(Color.rgb(255,165,0))
@@ -238,10 +258,11 @@ class QuizTestPage : AppCompatActivity() {
             }
             else{
                 next.setText("Finish")
+                timer.cancel()
                 System.out.println("Total marks: $marksGained")
                 val handler = Handler(Looper.getMainLooper())
                 handler.postDelayed({
-                    goStudentHomePage()
+                    goStudentHomePage(marksGained,attempted,correct,wrong,skipped)
                 }, 2000)
 
             }
@@ -251,8 +272,15 @@ class QuizTestPage : AppCompatActivity() {
 
     }
 
-    private fun goStudentHomePage() {
-        var intent:Intent = Intent(this, StudentHomePage::class.java)
+    private fun goStudentHomePage(marksObtained:Int, attempted:Int, correct:Int, wrong:Int, skipped:Int) {
+        var intent:Intent = Intent(this, ResultPage::class.java)
+        intent.putExtra("QuizName", quizname)
+        intent.putExtra("attempted", attempted)
+        intent.putExtra("correct",correct)
+        intent.putExtra("wrong", wrong)
+        intent.putExtra("skipped", skipped)
+        intent.putExtra("marksObtained",marksObtained)
+        System.out.println("Attempted = $attempted \n Correct = $correct \n Wrong = $wrong \n Skipped = $skipped")
         startActivity(intent)
     }
 
