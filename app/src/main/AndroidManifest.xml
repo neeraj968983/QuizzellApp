@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Quizellapp">
-        <activity android:name=".PrivacyMentor"></activity>
+        <activity android:name=".ResultPage"></activity>
+        <activity android:name=".PrivacyMentor" />
         <activity android:name=".ViewProfile_Mentor" />
         <activity android:name=".EditProfile_Mentor" />
         <activity android:name=".ViewProfile" />
