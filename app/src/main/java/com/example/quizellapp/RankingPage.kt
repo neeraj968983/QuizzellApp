@@ -19,7 +19,7 @@ class RankingPage : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ranking_page)
 
-        val df = DecimalFormat("000.00")
+        val df = DecimalFormat("00.00")
         df.roundingMode = RoundingMode.DOWN
 
         val quizInfoDatabase:QuizInfoDatabase = QuizInfoDatabase(this)
