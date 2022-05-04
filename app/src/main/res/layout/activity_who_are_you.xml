@@ -11,7 +11,7 @@
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Who are you?"
+        android:text="Login as:"
         android:textColor="@color/white"
         android:textStyle="bold"
         android:textSize="42sp"
@@ -39,6 +39,21 @@
         app:layout_constraintVertical_bias="0.430"
         app:layout_constraintHorizontal_bias="0.5"/>
 
+    <TextView
+        android:id="@+id/Or"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Or"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.54" />
+
     <Button
         android:id="@+id/student"
         android:layout_width="wrap_content"
@@ -54,7 +69,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.580" />
+        app:layout_constraintVertical_bias="0.65" />
 
     <TextView
         android:id="@+id/About_us"

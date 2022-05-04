@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/app_logo_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Quizellapp">
-        <activity android:name=".ResultPage"></activity>
+        <activity android:name=".RankingPage"></activity>
+        <activity android:name=".ResultPage" />
         <activity android:name=".PrivacyMentor" />
         <activity android:name=".ViewProfile_Mentor" />
         <activity android:name=".EditProfile_Mentor" />

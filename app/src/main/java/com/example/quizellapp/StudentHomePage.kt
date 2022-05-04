@@ -45,8 +45,10 @@ class StudentHomePage : AppCompatActivity() {
         listView.setOnItemClickListener { parent, view, position, id ->
             quizName = parent.getItemAtPosition(position).toString()
             if(quizName != ""){
+                System.out.println("Username from studentpage directed to quizinfo page \n ${i.getStringExtra("usernameFromLogin")}...........//")
                 var intent = Intent(this,QuizInfo::class.java)
                 intent.putExtra("QuizName",quizName)
+                intent.putExtra("username",i.getStringExtra("usernameFromLogin"))
                 startActivity(intent)
             }
         }
@@ -79,7 +81,11 @@ class StudentHomePage : AppCompatActivity() {
                     intent.putExtra("usernameFromLogin",i.getStringExtra("usernameFromLogin"))
                     startActivity(intent)
                 }
-                R.id.Ranking -> Toast.makeText(applicationContext, "Ranking Page is under progress", Toast.LENGTH_LONG).show()
+                R.id.Ranking -> {
+                    intent = Intent(this,RankingPage::class.java)
+                    intent.putExtra("usernameFromLogin",i.getStringExtra("usernameFromLogin"))
+                    startActivity(intent)
+                }
 
                 R.id.Finish_Quizzes -> {
                     intent = Intent(this, FinishedQuizzes::class.java)

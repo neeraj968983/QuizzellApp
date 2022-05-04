@@ -24,6 +24,7 @@ class QuizTestPage : AppCompatActivity() {
     var correct:Int = 0
     var wrong:Int = 0
     var skipped:Int = 0
+    lateinit var username:String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_quiz_test_page)
@@ -44,6 +45,8 @@ class QuizTestPage : AppCompatActivity() {
         var i = intent
         var count = 0
         quizname = i.getStringExtra("QuizName").toString()
+        username = i.getStringExtra("username").toString()
+
         var totalQuestion = quizInfoDatabase.totalQuestions(quizname)
         var quizInfo:Quizdetail = quizInfoDatabase.quizAllData(quizname)
 
@@ -76,7 +79,7 @@ class QuizTestPage : AppCompatActivity() {
                 duration.setText("Time's Up")
                 val handler = Handler(Looper.getMainLooper())
                 handler.postDelayed({
-                    goStudentHomePage(marksGained,attempted,correct,wrong,skipped)
+                    goStudentHomePage(marksGained,attempted,correct,wrong,skipped,username)
                 }, 2000)
             }
 
@@ -262,7 +265,7 @@ class QuizTestPage : AppCompatActivity() {
                 System.out.println("Total marks: $marksGained")
                 val handler = Handler(Looper.getMainLooper())
                 handler.postDelayed({
-                    goStudentHomePage(marksGained,attempted,correct,wrong,skipped)
+                    goStudentHomePage(marksGained,attempted,correct,wrong,skipped,username)
                 }, 2000)
 
             }
@@ -272,7 +275,7 @@ class QuizTestPage : AppCompatActivity() {
 
     }
 
-    private fun goStudentHomePage(marksObtained:Int, attempted:Int, correct:Int, wrong:Int, skipped:Int) {
+    private fun goStudentHomePage(marksObtained:Int, attempted:Int, correct:Int, wrong:Int, skipped:Int, username:String) {
         var intent:Intent = Intent(this, ResultPage::class.java)
         intent.putExtra("QuizName", quizname)
         intent.putExtra("attempted", attempted)
@@ -280,6 +283,7 @@ class QuizTestPage : AppCompatActivity() {
         intent.putExtra("wrong", wrong)
         intent.putExtra("skipped", skipped)
         intent.putExtra("marksObtained",marksObtained)
+        intent.putExtra("username", username)
         System.out.println("Attempted = $attempted \n Correct = $correct \n Wrong = $wrong \n Skipped = $skipped")
         startActivity(intent)
     }

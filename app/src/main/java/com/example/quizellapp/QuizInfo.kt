@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 
 class QuizInfo : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -13,8 +14,16 @@ class QuizInfo : AppCompatActivity() {
         var i = intent
 
         var quizname = i.getStringExtra("QuizName")
+        var username = i.getStringExtra("username")
 
         var quizInfoDatabase:QuizInfoDatabase = QuizInfoDatabase(this)
+        var scoreDatabase = ScoreDatabase(this)
+
+        var (check,attemptsLefts) = scoreDatabase.checkDetail(username,quizname)
+
+        if(check==0){
+            attemptsLefts = quizInfoDatabase.totalAttempts(quizname)
+        }
 
 
         var quizName:TextView = findViewById(R.id.QuizName)
@@ -34,14 +43,22 @@ class QuizInfo : AppCompatActivity() {
         var (a,b,c,d,e) = quizInfoDatabase.quizInformation(quizname)
         mentorName.setText(""+a)
         category.setText(""+b)
+        attemptLeft.setText(""+attemptsLefts)
         quizType.setText(""+c)
         maxmarks.setText(""+d)
         guideline.setText(""+e)
 
         start.setOnClickListener{
-            var intent:Intent = Intent(this,QuizTestPage::class.java)
-            intent.putExtra("QuizName",quizname)
-            startActivity(intent)
+            if(attemptsLefts==0){
+                Toast.makeText(this, "Your Attempts exhausted! You can't give this quiz",Toast.LENGTH_LONG).show()
+            }
+            else{
+                var intent:Intent = Intent(this,QuizTestPage::class.java)
+                intent.putExtra("QuizName",quizname)
+                intent.putExtra("username", username)
+                startActivity(intent)
+            }
+
         }
 
 

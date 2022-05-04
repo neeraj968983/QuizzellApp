@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:layout_margin="0dp"
+    app:cardElevation="0dp"
+    app:cardPreventCornerOverlap="false"
+    android:backgroundTint="@color/transparent"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="10dp"
+        android:paddingTop="5dp"
+        >
+
+        <TextView
+            android:id="@+id/Rank"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="1"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:textAlignment="center"
+            android:layout_marginRight="40dp"
+            />
+
+        <TextView
+            android:id="@+id/Username"
+            android:layout_width="220dp"
+            android:layout_height="wrap_content"
+            android:text="Neeraj Singh Jadon"
+            android:textStyle="bold"
+            android:textSize="18dp"
+            android:textColor="@color/white"
+
+            />
+        <TextView
+            android:id="@+id/Score"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:text="90.99%"
+            android:textStyle="bold"
+            android:textSize="18dp"
+            android:textColor="@color/white"
+
+            />
+
+    </LinearLayout>
+
+
+</androidx.cardview.widget.CardView>

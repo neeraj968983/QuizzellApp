@@ -5,6 +5,7 @@ import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
+import android.widget.Toast
 import java.math.RoundingMode
 import java.text.DecimalFormat
 
@@ -14,13 +15,18 @@ class ResultPage : AppCompatActivity() {
         setContentView(R.layout.activity_result_page)
 
         val quizInfoDatabase:QuizInfoDatabase = QuizInfoDatabase(this)
+        var scoreDatabase:ScoreDatabase = ScoreDatabase(this)
+
 
         var i = intent
         var quizname = i.getStringExtra("QuizName")
+        var totalAttempts = quizInfoDatabase.totalAttempts(quizname)
         var marks = i.getIntExtra("marksObtained",0)
+        var userName = i.getStringExtra("username")
 
         var quizInfo:Quizdetail = quizInfoDatabase.quizAllData(quizname)
 
+        var username:TextView = findViewById(R.id.UserName)
         var quizName:TextView = findViewById(R.id.QuizName)
         var category:TextView = findViewById(R.id.Category)
         var topic:TextView = findViewById(R.id.Topic)
@@ -34,6 +40,7 @@ class ResultPage : AppCompatActivity() {
         var skipped:TextView = findViewById(R.id.Skipped)
         var exitButton:TextView = findViewById(R.id.ExitButton)
 
+        username.setText(""+userName)
         quizName.setText(""+quizname)
         category.setText(""+quizInfo.category)
         topic.setText(""+quizInfo.subject)
@@ -78,10 +85,25 @@ class ResultPage : AppCompatActivity() {
 
 
 
-
-
         exitButton.setOnClickListener {
+            var (check,attemptsLeft) = scoreDatabase.checkDetail(userName, quizname)
+            if(check==1){
+                if(totalAttempts>attemptsLeft){
+                    scoreDatabase.updateAteempt(userName,quizname,(attemptsLeft-1))
+                    Toast.makeText(this,"Your Attempt left reduce by 1",Toast.LENGTH_SHORT).show()
+                }
+                else{
+                    Toast.makeText(this,"This Attempt is not countable",Toast.LENGTH_SHORT).show()
+                }
+            }
+            else{
+                scoreDatabase.addResult(resultDetail(userName,quizname,quizInfo.category,quizInfo.subject,quizInfo.maxmarks,quizInfo.totalquestions,percent,i.getIntExtra("attempted",0),i.getIntExtra("correct",0),i.getIntExtra("wrong",0),i.getIntExtra("skipped",0),(totalAttempts-1)))
+                System.out.println("username: $userName \n quizname: $quizname \n category ${quizInfo.category} \n subject ${quizInfo.subject} \n maxmarks: ${quizInfo.maxmarks} \n totalquestions: ${quizInfo.totalquestions} \n percent: $percent, \n Question Attempted: ${i.getIntExtra("attempted",0)} \n Correct: ${i.getIntExtra("correct",0)}  \n Worng: ${i.getIntExtra("wrong",0)} \n Skipped: ${i.getIntExtra("skipped",0)} \n attempts left${(totalAttempts-1)}")
+                Toast.makeText(this,"Your Score added for first time in Score Board",Toast.LENGTH_SHORT).show()
+            }
+
             var intent:Intent = Intent(this, StudentHomePage::class.java)
+            intent.putExtra("usernameFromLogin",userName)
             startActivity(intent)
         }
 

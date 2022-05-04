@@ -166,4 +166,16 @@ class QuizInfoDatabase(context: Context) : SQLiteOpenHelper(context, databaseNam
         return dataOfQuiz
     }
 
+    fun totalAttempts(quizname: String?):Int{
+        var totalattempts:Int = 0
+        val db = this.readableDatabase
+        val selection = "$COL3 = ?"
+        val selectionArgs = arrayOf(quizname)
+        val cursor = db.query(tableName,null,selection,selectionArgs,null,null,null)
+        if (cursor.moveToNext()){
+            totalattempts = cursor.getInt(8)
+        }
+        return totalattempts
+    }
+
 }
