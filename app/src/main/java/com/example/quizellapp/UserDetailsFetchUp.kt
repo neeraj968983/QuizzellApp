@@ -38,7 +38,6 @@ class UserDetailsFetchUp(context: Context) : SQLiteOpenHelper(context, databaseN
             dateOfBirth = cursor.getLong(2)
             contact = cursor.getLong(3)
         }
-        System.out.println(userdata+contact+dateOfBirth)
         return arrayOf(emailid,dateOfBirth,contact)
         db.close()
     }

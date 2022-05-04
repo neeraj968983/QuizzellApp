@@ -18,12 +18,17 @@ class StudentHomePage : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_student_home_page)
+        var userextradetails:UserExtraDetails = UserExtraDetails(this)
         var quizInfoDatabase:QuizInfoDatabase = QuizInfoDatabase(this)
         var quizName= ""
 
         var i = intent
+        System.out.println("Username in student home page is ${i.getStringExtra("usernameFromLogin")}")
 
         var intent:Intent
+        var (a,b,c,d) = userextradetails.fetchData(i.getStringExtra("usernameFromLogin"))
+        System.out.println("A = $a\n B = $b\n C = $c\n D = $d")
+        var User_Name = (a.toString() + " " + b.toString())
 
         var quizNames:Array<String> = quizInfoDatabase.quizNameList()
 
@@ -61,6 +66,7 @@ class StudentHomePage : AppCompatActivity() {
                 R.id.View_Profile -> {
                     intent = Intent(this,ViewProfile::class.java)
                     intent.putExtra("usernameFromLogin",i.getStringExtra("usernameFromLogin"))
+                    intent.putExtra("user_name",User_Name)
                     startActivity(intent)
                 }
                 R.id.Edit_Profile -> {

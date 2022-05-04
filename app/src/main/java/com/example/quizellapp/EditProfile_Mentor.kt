@@ -23,8 +23,7 @@ class EditProfile_Mentor : AppCompatActivity() {
         var dob: TextView = findViewById(R.id.DOB)
         var contact: TextView = findViewById(R.id.Contact)
 
-        var mentorName:String = ""
-        System.out.println("MMMMENTOR "+mentorName+"...................")
+        var mentorName:String
 
         usernameOfEdit.setText(""+uname)
 
@@ -44,7 +43,7 @@ class EditProfile_Mentor : AppCompatActivity() {
             var (a,b,c,d) = userextradetails.fetchData(uname)
             Fname.setText(""+a)
             Lname.setText(""+b)
-            mentorName = (a.toString() + " " + b.toString())
+
             if(c.equals("Male")){
                 num = 0
             }
@@ -67,19 +66,15 @@ class EditProfile_Mentor : AppCompatActivity() {
             if(userextradetails.checkUserIsThere(uname)){
                 var userextradetail: extraDetail = extraDetail(uname, Fname.text.toString(), Lname.text.toString(), gender.selectedItem.toString(), address.text.toString())
                 userextradetails.updateUserDetail(userextradetail)
-                System.out.println("MentorName  "+mentorName+"...........")
+                mentorName = (Fname.text.toString() + " " + Lname.text.toString())
+                System.out.println("Mentor Name in Edit profile page is "+mentorName+"...........")
                 var intent = Intent(this,MentorDashboard::class.java)
                 intent.putExtra("MentorName",mentorName)
+                intent.putExtra("usernameFromLogin",i.getStringExtra("usernameFromLogin"))
                 startActivity(intent)
             }
             else {
-                var userextradetail: extraDetail = extraDetail(uname, Fname.text.toString(), Lname.text.toString(), gender.selectedItem.toString(), address.text.toString())
-                userextradetails.addUser(userextradetail)
-                mentorName = Fname.text.toString() + " " + Lname.text.toString()
-                System.out.println("ElseMentorName  "+mentorName+"...........")
-                var intent = Intent(this,MentorDashboard::class.java)
-                intent.putExtra("MentorName",mentorName)
-                startActivity(intent)
+                Toast.makeText(this,"Username not registered!", Toast.LENGTH_SHORT).show()
             }
         }
 

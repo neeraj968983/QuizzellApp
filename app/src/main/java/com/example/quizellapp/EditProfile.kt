@@ -36,7 +36,6 @@ class EditProfile : AppCompatActivity() {
         }
 
         if(userextradetails.checkUserIsThere(uname)){
-            System.out.println("User is There........")
             var num = 0
             var (a,b,c,d) = userextradetails.fetchData(uname)
             Fname.setText(""+a)
@@ -63,14 +62,10 @@ class EditProfile : AppCompatActivity() {
             if(userextradetails.checkUserIsThere(uname)){
                 var userextradetail: extraDetail = extraDetail(uname, Fname.text.toString(), Lname.text.toString(), gender.selectedItem.toString(), address.text.toString())
                 userextradetails.updateUserDetail(userextradetail)
-                var intent:Intent = Intent(this,StudentHomePage::class.java)
-                startActivity(intent)
+                onBackPressed()
             }
             else {
-                var userextradetail: extraDetail = extraDetail(uname, Fname.text.toString(), Lname.text.toString(), gender.selectedItem.toString(), address.text.toString())
-                userextradetails.addUser(userextradetail)
-                var intent:Intent = Intent(this,StudentHomePage::class.java)
-                startActivity(intent)
+                Toast.makeText(this,"Username not registered!", Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -81,8 +76,7 @@ class EditProfile : AppCompatActivity() {
         update.setOnClickListener{
             var updateUserLocalData:UserInfoUpdate = UserInfoUpdate(uname,email.text.toString(),dob.text.toString().toLong(),contact.text.toString().toLong())
             databaseHelperClass.updateUserDetail(updateUserLocalData)
-            var intent:Intent = Intent(this,StudentHomePage::class.java)
-            startActivity(intent)
+            onBackPressed()
         }
     }
 }

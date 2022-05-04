@@ -25,7 +25,6 @@ class MentorDashboard : AppCompatActivity() {
 
 
         var i = intent
-        System.out.println(i.getStringExtra("usernameFromLogin"))
         var (a,b,c,d) = userextradetails.fetchData(i.getStringExtra("usernameFromLogin"))
         System.out.println("A = $a\n B = $b\n C = $c\n D = $d")
         var mentorName = (a.toString() + " " + b.toString())

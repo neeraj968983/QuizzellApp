@@ -70,7 +70,7 @@ class LoginPage : AppCompatActivity() {
                 }
                 var intent:Intent =Intent(this, WhoAreYou::class.java)
                 System.out.println(uname)
-                intent.putExtra("usernameFromLogin",uname)
+                intent.putExtra("username",uname)
                 startActivity(intent)
             }
             else{

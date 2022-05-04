@@ -17,7 +17,7 @@ class QuizCreationInfo : AppCompatActivity() {
 
         val username = i.getStringExtra("usernameFromLogin")
         val mentorName:TextView = findViewById(R.id.MentorName)
-        mentorName.setText("owner: "+i.getStringExtra("MentorName"))
+        mentorName.setText(""+i.getStringExtra("MentorName"))
         val spin: Spinner = findViewById(R.id.spinner)
         val Attempts: Spinner = findViewById(R.id.spinner2)
         val quizType:Spinner = findViewById(R.id.spinner3)
