@@ -23,7 +23,6 @@ class StudentHomePage : AppCompatActivity() {
         var quizName= ""
 
         var i = intent
-        System.out.println("Username in student home page is ${i.getStringExtra("usernameFromLogin")}")
 
         var intent:Intent
         var (a,b,c,d) = userextradetails.fetchData(i.getStringExtra("usernameFromLogin"))
@@ -45,7 +44,6 @@ class StudentHomePage : AppCompatActivity() {
         listView.setOnItemClickListener { parent, view, position, id ->
             quizName = parent.getItemAtPosition(position).toString()
             if(quizName != ""){
-                System.out.println("Username from studentpage directed to quizinfo page \n ${i.getStringExtra("usernameFromLogin")}...........//")
                 var intent = Intent(this,QuizInfo::class.java)
                 intent.putExtra("QuizName",quizName)
                 intent.putExtra("username",i.getStringExtra("usernameFromLogin"))
@@ -82,7 +80,7 @@ class StudentHomePage : AppCompatActivity() {
                     startActivity(intent)
                 }
                 R.id.Ranking -> {
-                    intent = Intent(this,RankingPage::class.java)
+                    intent = Intent(this,RankingCategory::class.java)
                     intent.putExtra("usernameFromLogin",i.getStringExtra("usernameFromLogin"))
                     startActivity(intent)
                 }

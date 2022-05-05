@@ -178,4 +178,17 @@ class QuizInfoDatabase(context: Context) : SQLiteOpenHelper(context, databaseNam
         return totalattempts
     }
 
+    fun getQuizNameByCategory(category:String):List<String>{
+        var quizNameList = arrayListOf<String>()
+        val db = this.readableDatabase
+        val selection = "$COL4 = ?"
+        val selectionArgs = arrayOf(category)
+        val cursor = db.query(tableName,null,selection,selectionArgs,null,null,null)
+        while(cursor.moveToNext()){
+            quizNameList.add(cursor.getString(2))
+        }
+        db.close()
+        return quizNameList
+    }
+
 }

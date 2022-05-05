@@ -60,8 +60,7 @@ class QuizCreationInfo : AppCompatActivity() {
         }
 
         back.setOnClickListener{
-            var intent = Intent(this, MentorDashboard::class.java)
-            startActivity(intent)
+            onBackPressed()
         }
         next.setOnClickListener(){
             var quizDetail:Quizdetail = Quizdetail(username,mentorName.text.toString(),quizName.text.toString(),spin.selectedItem.toString(),subject.text.toString(),duration.text.toString().toInt(),date.text.toString(),time.text.toString(),Attempts.selectedItem.toString().toInt(),quizType.selectedItem.toString(),quizPurpose.selectedItem.toString(),totalQuestion.text.toString().toInt(),maximumMarks.text.toString().toInt(),guideline.text.toString())
