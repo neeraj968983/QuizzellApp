@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper
 
 class ScoreDatabase(context:Context): SQLiteOpenHelper(context, databaseName, null, databaseVerion) {
 
-    private var CreateTable = ("create table "+ ScoreDatabase.tableName + "(" +
+    private var CreateTable = ("create table "+ tableName + "(" +
             ScoreDatabase.COL1 + " Text, " +
             ScoreDatabase.COL2 + " Text, " +
             ScoreDatabase.COL3 + " Text, " +
@@ -21,7 +21,7 @@ class ScoreDatabase(context:Context): SQLiteOpenHelper(context, databaseName, nu
             ScoreDatabase.COL11 + " Integer, " +
             ScoreDatabase.COL12 + " Integer)" )
 
-    private val dropTable = ("Drop table IF EXISTS ${ScoreDatabase.tableName}")
+    private val dropTable = ("Drop table IF EXISTS $tableName")
 
     companion object{
         private var databaseName = "ScoreDatabase"
@@ -72,8 +72,9 @@ class ScoreDatabase(context:Context): SQLiteOpenHelper(context, databaseName, nu
         db.close()
     }
 
-    fun checkDetail(username:String?, quizname:String?):Array<Int>{
+    fun checkDetail(username:String?, quizname:String?):updateAttemptsAndMarks{
         var attempts = 0
+        var score:Double = 0.0
         var flag = 0
         val db = this.readableDatabase
         val selection = "$COL1 = ? AND $COL2 = ?"
@@ -83,23 +84,26 @@ class ScoreDatabase(context:Context): SQLiteOpenHelper(context, databaseName, nu
         if (cursor.moveToNext()){
             flag = 1
             attempts = cursor.getInt(11)
+            score = cursor.getDouble(6)
         }
         else{
             flag = 0
         }
+        var details = updateAttemptsAndMarks(flag,attempts,score)
 
 
-        return arrayOf(flag,attempts)
+        return details
     }
 
-    fun updateAteempt(username:String?, quizname:String?, attemptsleft:Int){
+    fun updateAteempt(username:String?, quizname:String?, attemptsleft:Int, UpdatedScore:Double){
         val db = this.writableDatabase
         val selection = "$COL1 = ? AND $COL2 = ?"
         val selectionArgs = arrayOf(username, quizname)
         val values = ContentValues()
         values.put(COL12,attemptsleft)
+        values.put(COL7,UpdatedScore)
 
-        db.update(ScoreDatabase.tableName,values,selection,selectionArgs)
+        db.update(tableName,values,selection,selectionArgs)
         db.close()
 
     }

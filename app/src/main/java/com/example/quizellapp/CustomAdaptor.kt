@@ -1,5 +1,6 @@
 package com.example.quizellapp
 import android.graphics.Color
+import android.graphics.Typeface
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -28,8 +29,14 @@ internal class CustomAdapter(private var CArank: List<Int>, private var CAUserNa
         val Score = CAScore[position]
         if (UserName.equals(userName)){
             holder.rank.setBackgroundColor(Color.parseColor("#491967"))
+            holder.rank.setTypeface(Typeface.DEFAULT_BOLD)
+            holder.rank.setTextSize(20F)
             holder.username.setBackgroundColor(Color.parseColor("#491967"))
+            holder.username.setTypeface(Typeface.DEFAULT_BOLD)
+            holder.username.setTextSize(20F)
             holder.score.setBackgroundColor(Color.parseColor("#491967"))
+            holder.score.setTypeface(Typeface.DEFAULT_BOLD)
+            holder.score.setTextSize(20F)
         }
         if(position == 0){
             holder.rank.setTextColor(Color.parseColor("#FFD700"))

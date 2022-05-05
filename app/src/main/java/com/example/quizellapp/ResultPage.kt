@@ -86,11 +86,21 @@ class ResultPage : AppCompatActivity() {
 
 
         exitButton.setOnClickListener {
-            var (check,attemptsLeft) = scoreDatabase.checkDetail(userName, quizname)
+            var detail = scoreDatabase.checkDetail(userName, quizname)
+            var score:Double = detail.score
+            var check:Int = detail.check
+            var attemptsLeft:Int = detail.attemptsLeft
+            var updatedScore:Double
             if(check==1){
-                if(totalAttempts>attemptsLeft){
-                    scoreDatabase.updateAteempt(userName,quizname,(attemptsLeft-1))
-                    Toast.makeText(this,"Your Attempt left reduce by 1",Toast.LENGTH_SHORT).show()
+                if(attemptsLeft>0){
+                    if(score>percent){
+                        updatedScore = score
+                    }
+                    else{
+                        updatedScore = percent
+                    }
+                    scoreDatabase.updateAteempt(userName,quizname,(attemptsLeft-1),updatedScore)
+                    Toast.makeText(this,"Your Attempt left reduce by 1 and score updated",Toast.LENGTH_SHORT).show()
                 }
                 else{
                     Toast.makeText(this,"This Attempt is not countable",Toast.LENGTH_SHORT).show()
