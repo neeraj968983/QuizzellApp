@@ -104,10 +104,12 @@ class ScoreDatabase(context:Context): SQLiteOpenHelper(context, databaseName, nu
 
     }
 
-    fun countTotalRow():Int{
+    fun countTotalRow(quizname:String?):Int{
         var count = 0
         val db = this.readableDatabase
-        val cursor = db.rawQuery("Select * from $tableName",null,null)
+        val selection = "$COL2 = ?"
+        val selectionArgs = arrayOf(quizname)
+        val cursor = db.query(tableName,null,selection,selectionArgs,null,null,null)
         while (cursor.moveToNext()){
             count++
         }
@@ -115,13 +117,11 @@ class ScoreDatabase(context:Context): SQLiteOpenHelper(context, databaseName, nu
         return count
     }
 
-    fun scoreBoard():List<ListOfStudent>{
-        var username:String
-        var score:Double
+    fun scoreBoard(quizname:String?):List<ListOfStudent>{
         var studentList = arrayListOf<ListOfStudent>()
         val db = this.readableDatabase
-        val cursor = db.rawQuery("Select * from $tableName",null,null)
-
+        val selectionArgs = arrayOf(quizname)
+        val cursor = db.rawQuery("Select * from $tableName where $COL2 = ? ORDER BY $COL7 DESC",selectionArgs,null)
         while (cursor.moveToNext()){
             studentList.add(ListOfStudent(cursor.getString(0),cursor.getDouble(6)))
         }

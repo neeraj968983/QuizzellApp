@@ -19,6 +19,7 @@ class RankingCategory : AppCompatActivity() {
         val categorySpinner:Spinner = findViewById(R.id.CategorySpinner)
         val searchButton:Button = findViewById(R.id.SearchButton)
         val quizList:ListView = findViewById(R.id.QuizNameListByCategory)
+        val back:Button = findViewById(R.id.backButton)
 
         var quizInfoDatabase = QuizInfoDatabase(this)
 
@@ -43,7 +44,7 @@ class RankingCategory : AppCompatActivity() {
             if(quizName != ""){
                 var intent = Intent(this,RankingPage::class.java)
                 intent.putExtra("QuizName",quizName)
-                intent.putExtra("username",i.getStringExtra("usernameFromLogin"))
+                intent.putExtra("username",i.getStringExtra("username"))
                 startActivity(intent)
             }
         }
@@ -61,10 +62,13 @@ class RankingCategory : AppCompatActivity() {
                 if(quizName != ""){
                     var intent = Intent(this,RankingPage::class.java)
                     intent.putExtra("QuizName",quizName)
-                    intent.putExtra("username",i.getStringExtra("usernameFromLogin"))
+                    intent.putExtra("username",i.getStringExtra("username"))
                     startActivity(intent)
                 }
             }
+        }
+        back.setOnClickListener {
+            onBackPressed()
         }
 
 

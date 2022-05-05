@@ -81,7 +81,7 @@ class StudentHomePage : AppCompatActivity() {
                 }
                 R.id.Ranking -> {
                     intent = Intent(this,RankingCategory::class.java)
-                    intent.putExtra("usernameFromLogin",i.getStringExtra("usernameFromLogin"))
+                    intent.putExtra("username",i.getStringExtra("usernameFromLogin").toString())
                     startActivity(intent)
                 }
 

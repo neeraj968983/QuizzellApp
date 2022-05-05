@@ -8,7 +8,7 @@ import androidx.annotation.NonNull
 import androidx.recyclerview.widget.RecyclerView
 
 
-internal class CustomAdapter(private var CArank: List<Int>, private var CAUserName: List<String>, private var CAScore: List<Double> ) :
+internal class CustomAdapter(private var CArank: List<Int>, private var CAUserName: List<String>, private var CAScore: List<Double>, private  var userName:String? ) :
         RecyclerView.Adapter<CustomAdapter.MyViewHolder>() {
     internal inner class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         var rank: TextView = view.findViewById(R.id.Rank)
@@ -26,10 +26,25 @@ internal class CustomAdapter(private var CArank: List<Int>, private var CAUserNa
         val Rank = CArank[position]
         val UserName = CAUserName[position]
         val Score = CAScore[position]
+        if (UserName.equals(userName)){
+            holder.rank.setBackgroundColor(Color.parseColor("#491967"))
+            holder.username.setBackgroundColor(Color.parseColor("#491967"))
+            holder.score.setBackgroundColor(Color.parseColor("#491967"))
+        }
         if(position == 0){
-            holder.rank.setTextColor(Color.RED)
-            holder.username.setTextColor(Color.RED)
-            holder.score.setTextColor(Color.RED)
+            holder.rank.setTextColor(Color.parseColor("#FFD700"))
+            holder.username.setTextColor(Color.parseColor("#FFD700"))
+            holder.score.setTextColor(Color.parseColor("#FFD700"))
+        }
+        if(position == 1){
+            holder.rank.setTextColor(Color.parseColor("#C0C0C0"))
+            holder.username.setTextColor(Color.parseColor("#C0C0C0"))
+            holder.score.setTextColor(Color.parseColor("#C0C0C0"))
+        }
+        if(position == 2){
+            holder.rank.setTextColor(Color.parseColor("#CD7F32"))
+            holder.username.setTextColor(Color.parseColor("#CD7F32"))
+            holder.score.setTextColor(Color.parseColor("#CD7F32"))
         }
         holder.rank.text = Rank.toString()
         holder.username.text = UserName
