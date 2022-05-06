@@ -1,22 +1,36 @@
 package com.example.quizellapp
 
+import android.app.PendingIntent
+import android.content.DialogInterface
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.preference.PreferenceManager
+import android.telephony.SmsManager
 import android.view.MenuItem
+import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AlertDialog
+import androidx.core.view.marginLeft
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
 
 class MentorDashboard : AppCompatActivity() {
+    private lateinit var sharedPreferences: SharedPreferences
+    private lateinit var editor: SharedPreferences.Editor
     var count = 1
     lateinit var toggle : ActionBarDrawerToggle
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_mentor_dashboard)
+
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
+        editor = sharedPreferences.edit()
+
         var drawerLayout : DrawerLayout = findViewById(R.id.drawerLayout)
         var navView : NavigationView = findViewById(R.id.nav_view)
         var logout:LinearLayout = findViewById(R.id.logout)
@@ -66,9 +80,27 @@ class MentorDashboard : AppCompatActivity() {
                 R.id.Your_Quizzes -> Toast.makeText(applicationContext, "This session is under progress", Toast.LENGTH_LONG).show()
                 R.id.QA -> Toast.makeText(applicationContext, "Question/Answer", Toast.LENGTH_LONG).show()
                 R.id.ChatUs -> Toast.makeText(applicationContext, "ChatUs", Toast.LENGTH_LONG).show()
-                R.id.ContactUS -> Toast.makeText(applicationContext, "ContactUS", Toast.LENGTH_LONG).show()
+                R.id.ContactUS -> {
+                    val builder: android.app.AlertDialog.Builder = android.app.AlertDialog.Builder(this)
+                    builder.setTitle("Type details below:")
+                    val input = EditText(this)
+                    input.minLines = 3
+                    input.setHint("Enter your problem here")
+                    builder.setView(input)
+                    builder.setPositiveButton("Send",DialogInterface.OnClickListener{
+                        dialog, which ->
+                        var msg = "From Mentor: " + input.text.toString()
+                        val sentPI: PendingIntent = PendingIntent.getBroadcast(this, 0, Intent("SMS_SENT"), 0)
+                        SmsManager.getDefault().sendTextMessage("8290968983", null, msg, sentPI, null)
+                    })
+                    builder.setNegativeButton("Cancel", DialogInterface.OnClickListener{
+                        dialog, which ->
+                        dialog.cancel()
+                    })
+                    builder.show()
+                }
                 R.id.AboutUS -> {
-                    var intent: Intent = Intent(this,AboutUs::class.java)
+                    var intent: Intent = Intent(this, AboutUs::class.java)
                     startActivity(intent)
                 }
 
@@ -76,6 +108,12 @@ class MentorDashboard : AppCompatActivity() {
             true
         }
         logout.setOnClickListener{
+            editor.putString(getString(R.string.checkBox), "False")
+            editor.commit()
+            editor.putString(getString(R.string.name), "")
+            editor.commit()
+            editor.putString(getString(R.string.password), "")
+            editor.commit()
             intent = Intent(this,LoginPage::class.java)
             startActivity(intent)
         }

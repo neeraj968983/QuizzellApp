@@ -191,4 +191,15 @@ class QuizInfoDatabase(context: Context) : SQLiteOpenHelper(context, databaseNam
         return quizNameList
     }
 
+    fun quizDetailList():ArrayList<QuizDetailForList>{
+        var dataOfList:ArrayList<QuizDetailForList> = ArrayList()
+        var db = this.readableDatabase
+        var cursor = db.query(tableName,null,null,null,null,null,null)
+        while (cursor.moveToNext()){
+            dataOfList.add(QuizDetailForList(cursor.getString(2),cursor.getString(1),cursor.getString(9),cursor.getString(3),cursor.getInt(12),cursor.getInt(5), cursor.getInt(8)))
+        }
+        db.close()
+        return dataOfList
+    }
+
 }

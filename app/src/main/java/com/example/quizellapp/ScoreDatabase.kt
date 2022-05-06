@@ -131,4 +131,5 @@ class ScoreDatabase(context:Context): SQLiteOpenHelper(context, databaseName, nu
         }
         return studentList
     }
+
 }
