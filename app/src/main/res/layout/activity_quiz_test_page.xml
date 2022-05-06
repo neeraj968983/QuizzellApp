@@ -156,8 +156,8 @@
     <com.google.android.material.button.MaterialButton
         android:id="@+id/next"
         android:layout_width="wrap_content"
-        android:layout_height="80dp"
-        android:text="Skip>"
+        android:layout_height="60dp"
+        android:text="Next"
         android:textSize="18sp"
         android:backgroundTint="@color/white"
         app:cornerRadius="20dp"
@@ -167,10 +167,10 @@
         app:strokeWidth="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.869"
+        app:layout_constraintHorizontal_bias="0.8"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.915" />
+        app:layout_constraintVertical_bias="0.8" />
 
     <TextView
         android:id="@+id/TestDuration"

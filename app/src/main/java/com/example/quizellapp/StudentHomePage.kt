@@ -29,7 +29,7 @@ class StudentHomePage : AppCompatActivity() {
         System.out.println("A = $a\n B = $b\n C = $c\n D = $d")
         var User_Name = (a.toString() + " " + b.toString())
 
-        var quizNames:Array<String> = quizInfoDatabase.quizNameList()
+        var quizNames = quizInfoDatabase.quizNameList()
 
         var drawerLayout : DrawerLayout = findViewById(R.id.drawerLayout)
         var navView : NavigationView = findViewById(R.id.nav_view)

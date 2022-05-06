@@ -76,13 +76,13 @@ class QuizInfoDatabase(context: Context) : SQLiteOpenHelper(context, databaseNam
         db.close()
     }
 
-    fun quizNameList():Array<String>{
+    fun quizNameList(): ArrayList<String> {
         var i = 0
-        var array = Array<String>(10){""}
+        var array = arrayListOf<String>()
         var db = this.readableDatabase
         var cursor = db.query(tableName,null,null,null,null,null,null)
         while (cursor.moveToNext()){
-            array[i] = cursor.getString(2)
+            array.add(cursor.getString(2))
             i++
         }
         return array
