@@ -10,6 +10,8 @@ class QuizCreationInfo : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_quiz_creation_info)
         val quizInfoDatabase:QuizInfoDatabase = QuizInfoDatabase(this)
+        val accountSummaryDatabase:AccountSummaryDatabase = AccountSummaryDatabase(this)
+        var accountDataFromQuizCreation:AccountSummaryDataClass
 
         val i = intent
         val next:Button = findViewById(R.id.Next)
@@ -65,6 +67,14 @@ class QuizCreationInfo : AppCompatActivity() {
         next.setOnClickListener(){
             var quizDetail:Quizdetail = Quizdetail(username,mentorName.text.toString(),quizName.text.toString(),spin.selectedItem.toString(),subject.text.toString(),duration.text.toString().toInt(),date.text.toString(),time.text.toString(),Attempts.selectedItem.toString().toInt(),quizType.selectedItem.toString(),quizPurpose.selectedItem.toString(),totalQuestion.text.toString().toInt(),maximumMarks.text.toString().toInt(),guideline.text.toString())
             quizInfoDatabase.addQuizDetail(quizDetail)
+            if (quizType.selectedItem.equals("Free")){
+                accountDataFromQuizCreation = AccountSummaryDataClass(mentorName.text.toString(),quizName.text.toString(),spin.selectedItem.toString(), quizType.selectedItem.toString(),totalQuestion.text.toString().toInt(),1,0)
+            }
+            else{
+                accountDataFromQuizCreation = AccountSummaryDataClass(mentorName.text.toString(),quizName.text.toString(),spin.selectedItem.toString(), quizType.selectedItem.toString(),totalQuestion.text.toString().toInt(),0,1)
+            }
+
+            accountSummaryDatabase.addDataToAccountSummary(accountDataFromQuizCreation)
             var intent:Intent = Intent(this,QuizQuestionCreation::class.java)
             intent.putExtra("usernameFromLogin",username)
             intent.putExtra("TotalQuestion",totalQuestion.text.toString().toInt())

@@ -17,6 +17,8 @@ class QuizInfo : AppCompatActivity() {
         var username = i.getStringExtra("username")
 
         var quizInfoDatabase:QuizInfoDatabase = QuizInfoDatabase(this)
+        var accounntSummaryDatabase2 = AccounntSummaryDatabase2(this)
+        var dataFromQuizInfo:AccountSummaryDataClass2
         var scoreDatabase = ScoreDatabase(this)
 
         var (check,attemptsLefts) = scoreDatabase.checkDetail(username,quizname)
@@ -24,6 +26,9 @@ class QuizInfo : AppCompatActivity() {
         if(check==0){
             attemptsLefts = quizInfoDatabase.totalAttempts(quizname)
         }
+
+        var paidquiztotalattempt:Int = 0
+
 
 
         var quizName:TextView = findViewById(R.id.QuizName)
@@ -48,11 +53,37 @@ class QuizInfo : AppCompatActivity() {
         maxmarks.setText(""+d)
         guideline.setText(""+e)
 
+        System.out.println("Attempts Left: $attemptsLefts and Quiz Type: $c")
+
         start.setOnClickListener{
             if(attemptsLefts==0){
                 Toast.makeText(this, "Your Attempts exhausted! You can't give this quiz",Toast.LENGTH_LONG).show()
+//                dataFromQuizInfo = AccountSummaryDataClass2(username,a.toString(),b.toString(),1,0,c.toString(),quizname)
             }
             else{
+                if (c.toString().equals("Free")){
+                    System.out.println("Username: $username and Quiz Name: $quizname.............//")
+                    if(accounntSummaryDatabase2.checkCandidate(username,quizname)){
+                        System.out.println("User already there")
+
+                    }
+                    else {
+                        dataFromQuizInfo = AccountSummaryDataClass2(username, a.toString(), b.toString(), 1, 0, c.toString(), quizname)
+                        accounntSummaryDatabase2.addDetailsToAcoountSummary2(dataFromQuizInfo)
+                    }
+                }
+                else{
+                    if(accounntSummaryDatabase2.checkCandidate(username,quizname)){
+
+                    }
+                    else{
+                        dataFromQuizInfo = AccountSummaryDataClass2(username,a.toString(),b.toString(),0,1,c.toString(),quizname)
+                        accounntSummaryDatabase2.addDetailsToAcoountSummary2(dataFromQuizInfo)
+                    }
+                    var paidquizattemp: Int = accounntSummaryDatabase2.getPaidQuizTotalAttempt(username,quizname)
+                    paidquizattemp = paidquizattemp+1
+                    accounntSummaryDatabase2.addAttempt(username,quizname,paidquizattemp)
+                }
                 var intent:Intent = Intent(this,QuizTestPage::class.java)
                 intent.putExtra("QuizName",quizname)
                 intent.putExtra("username", username)
