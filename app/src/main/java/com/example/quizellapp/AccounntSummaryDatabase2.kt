@@ -109,14 +109,19 @@ class AccounntSummaryDatabase2(context: Context):SQLiteOpenHelper(context, datab
         db.close()
     }
     fun getAttemptsByList(quizname: String?):Int{
-        var paidquizattempts:Int = 0
+        var attempts:Int = 0
         val db = this.readableDatabase
         val selection = "$COL8 = ?"
         val selectionArgs = arrayOf(quizname)
         val cursor = db.query(tablename,null,selection,selectionArgs,null,null,null)
         while (cursor.moveToNext()){
-            paidquizattempts += cursor.getInt(4)
+            if(cursor.getString(5).equals("Free")){
+                attempts += cursor.getInt(3)
+            }
+            else{
+                attempts += cursor.getInt(4)
+            }
         }
-        return paidquizattempts
+        return attempts
     }
 }

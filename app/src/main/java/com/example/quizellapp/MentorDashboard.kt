@@ -65,6 +65,30 @@ class MentorDashboard : AppCompatActivity() {
 
         supportActionBar?.setDisplayShowHomeEnabled(true)
 
+        var data = accountSummaryDatabase.getMentorQuizList(i.getStringExtra("usernameFromLogin").toString())
+
+        var quiznames = arrayListOf<String>()
+        var categories = arrayListOf<String>()
+        var quiztype = arrayListOf<String>()
+        var getattempts:Int
+        var studentAttempts = arrayListOf<Int>()
+
+
+        for (i in 0..(data.size-1)){
+            getattempts = accounntSummaryDatabase2.getAttemptsByList((data[i].quizname).toString())
+            studentAttempts.add(getattempts)
+            quiznames.add((data[i].quizname).toString())
+            quiztype.add((data[i].quiztype).toString())
+            categories.add((data[i].category).toString())
+        }
+
+        val listView:ListView = findViewById(R.id.MentorQuizList)
+        val myAdaptor = CustomAdaptorMentorQuizList(this,quiznames,categories,quiztype,studentAttempts)
+        listView.adapter = myAdaptor
+        listView.setOnItemClickListener { parent, view, position, id ->
+            System.out.println(parent.getItemAtPosition(position))
+        }
+
 
         navView.setNavigationItemSelectedListener {
 

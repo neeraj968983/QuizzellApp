@@ -114,5 +114,19 @@ class AccountSummaryDatabase(context:Context):SQLiteOpenHelper(context, database
             mentorname = cursor.getString(11)
         }
         return mentorname
+        db.close()
+    }
+
+    fun getMentorQuizList(username: String?):ArrayList<mentorQuizListData1>{
+        var quizList:ArrayList<mentorQuizListData1> = ArrayList()
+        var db = this.readableDatabase
+        val selection = "$COL1 = ?"
+        var selectionArgs = arrayOf(username)
+        var cursor = db.query(tablename,null,selection,selectionArgs,null,null,null)
+        while (cursor.moveToNext()){
+            quizList.add(mentorQuizListData1(cursor.getString(11),cursor.getString(1),cursor.getString(10)))
+        }
+        db.close()
+        return quizList
     }
 }
