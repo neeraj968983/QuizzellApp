@@ -132,4 +132,16 @@ class ScoreDatabase(context:Context): SQLiteOpenHelper(context, databaseName, nu
         return studentList
     }
 
+    fun getScore(candidatename:String?, quizname:String?):Double{
+        var score:Double = 0.0
+        val db = this.readableDatabase
+        val selection = "$COL1 = ? AND $COL2 = ?"
+        val selectionArgs = arrayOf(candidatename,quizname)
+        val cursor = db.query(tableName,null,selection,selectionArgs,null,null,null)
+        if(cursor.moveToNext()){
+            score = cursor.getDouble(6)
+        }
+        return score
+    }
+
 }

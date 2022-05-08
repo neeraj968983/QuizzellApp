@@ -122,6 +122,27 @@ class AccounntSummaryDatabase2(context: Context):SQLiteOpenHelper(context, datab
                 attempts += cursor.getInt(4)
             }
         }
+        db.close()
         return attempts
+    }
+
+    fun getCandidateNameAndAttempts(quizname: String?):ArrayList<mentorQuizStudentData>{
+        var quizStudentList:ArrayList<mentorQuizStudentData> = ArrayList()
+        var attemptsGiven = 0
+        val db = this.readableDatabase
+        val selection = "$COL8 = ?"
+        val selectionArgs = arrayOf(quizname)
+        val cursor = db.query(tablename,null,selection,selectionArgs,null,null,null)
+        while (cursor.moveToNext()){
+            if(cursor.getString(5).equals("Free")){
+                attemptsGiven = 0
+            }
+            else{
+                attemptsGiven = cursor.getInt(4)
+            }
+            quizStudentList.add(mentorQuizStudentData(cursor.getString(0), attemptsGiven))
+        }
+        db.close()
+        return quizStudentList
     }
 }

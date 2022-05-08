@@ -15,6 +15,7 @@ import android.view.MenuItem
 import android.widget.*
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AlertDialog
+import androidx.core.view.GravityCompat
 import androidx.core.view.marginLeft
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
@@ -45,6 +46,7 @@ class MentorDashboard : AppCompatActivity() {
         var userextradetails:UserExtraDetails = UserExtraDetails(this)
         var accountSummaryDatabase = AccountSummaryDatabase(this)
         var accounntSummaryDatabase2 = AccounntSummaryDatabase2(this)
+        var scoreDatabase = ScoreDatabase(this)
         var cashAccounts = cashAccount(this)
 
 
@@ -65,6 +67,11 @@ class MentorDashboard : AppCompatActivity() {
 
         supportActionBar?.setDisplayShowHomeEnabled(true)
 
+        var candidatename = arrayListOf<String>()
+        var candidateattempts = arrayListOf<Int>()
+        var candidatescore = arrayListOf<Double>()
+
+
         var data = accountSummaryDatabase.getMentorQuizList(i.getStringExtra("usernameFromLogin").toString())
 
         var quiznames = arrayListOf<String>()
@@ -74,19 +81,34 @@ class MentorDashboard : AppCompatActivity() {
         var studentAttempts = arrayListOf<Int>()
 
 
-        for (i in 0..(data.size-1)){
-            getattempts = accounntSummaryDatabase2.getAttemptsByList((data[i].quizname).toString())
+        for (j in 0..(data.size-1)){
+            getattempts = accounntSummaryDatabase2.getAttemptsByList((data[j].quizname).toString())
             studentAttempts.add(getattempts)
-            quiznames.add((data[i].quizname).toString())
-            quiztype.add((data[i].quiztype).toString())
-            categories.add((data[i].category).toString())
+            quiznames.add((data[j].quizname).toString())
+            quiztype.add((data[j].quiztype).toString())
+            categories.add((data[j].category).toString())
         }
 
         val listView:ListView = findViewById(R.id.MentorQuizList)
+        val listView2:ListView = findViewById(R.id.StudentList)
         val myAdaptor = CustomAdaptorMentorQuizList(this,quiznames,categories,quiztype,studentAttempts)
         listView.adapter = myAdaptor
         listView.setOnItemClickListener { parent, view, position, id ->
-            System.out.println(parent.getItemAtPosition(position))
+            var data2 = accounntSummaryDatabase2.getCandidateNameAndAttempts(parent.getItemAtPosition(position).toString())
+            var QUIZNAME = parent.getItemAtPosition(position).toString()
+
+            for (j in 0..(data2.size-1)){
+                var score = scoreDatabase.getScore((data2[j].candidateName).toString(),QUIZNAME)
+                candidatescore.add(score)
+                candidatename.add((data2[j].candidateName).toString())
+                candidateattempts.add((data2[j].attemptsGiven).toInt())
+            }
+            val myAdaptor2 = CustomAdaptorStudentList(this,candidatename,candidateattempts,candidatescore)
+            listView2.adapter = myAdaptor2
+            listView2.setOnItemClickListener{parent, view, position,id ->
+                System.out.println("Candidate name is: ${parent.getItemAtPosition(position)}............/////")
+            }
+
         }
 
 
@@ -119,7 +141,9 @@ class MentorDashboard : AppCompatActivity() {
                     intent.putExtra("MentorName",mentorName)
                     startActivity(intent)
                 }
-                R.id.Your_Quizzes -> Toast.makeText(applicationContext, "This session is under progress", Toast.LENGTH_LONG).show()
+                R.id.Your_Quizzes -> {
+                    drawerLayout.closeDrawer(GravityCompat.START)
+                }
                 R.id.QA -> Toast.makeText(applicationContext, "Question/Answer", Toast.LENGTH_LONG).show()
                 R.id.ChatUs -> Toast.makeText(applicationContext, "ChatUs", Toast.LENGTH_LONG).show()
                 R.id.ContactUS -> {
