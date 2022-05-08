@@ -13,6 +13,7 @@
         android:layout_marginTop="60dp">
 
         <ImageView
+            android:id="@+id/imageView3"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:src="@drawable/studentdashboard"
@@ -33,69 +34,20 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.207"
+            app:layout_constraintVertical_bias="0.07"
             app:layout_constraintHorizontal_bias="0.47"/>
 
-        <TableLayout
-            android:id="@+id/tableLayout"
-            android:layout_width="340sp"
-            android:layout_height="400sp"
-            android:layout_marginTop="20sp"
+        <ListView
+            android:id="@+id/FinishedQuizListView"
+            android:layout_width="300dp"
+            android:layout_height="450dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.495"
+            app:layout_constraintHorizontal_bias="0.49"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.75">
+            app:layout_constraintVertical_bias="0.637" />
 
-            <TableRow>
-
-                <Button
-                    android:layout_width="340sp"
-                    android:layout_height="60sp"
-                    android:text="Quiz1" />
-            </TableRow>
-
-            <TableRow>
-
-                <Button
-                    android:layout_width="340sp"
-                    android:layout_height="60sp"
-                    android:text="Quiz2" />
-            </TableRow>
-
-            <TableRow>
-
-                <Button
-                    android:layout_width="340sp"
-                    android:layout_height="60sp"
-                    android:text="Quiz3" />
-            </TableRow>
-
-            <TableRow>
-
-                <Button
-                    android:layout_width="340sp"
-                    android:layout_height="60sp"
-                    android:text="Quiz1" />
-            </TableRow>
-
-            <TableRow>
-
-                <Button
-                    android:layout_width="340sp"
-                    android:layout_height="60sp"
-                    android:text="Quiz2" />
-            </TableRow>
-
-            <TableRow>
-
-                <Button
-                    android:layout_width="340sp"
-                    android:layout_height="60sp"
-                    android:text="Quiz3" />
-            </TableRow>
-        </TableLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <FrameLayout

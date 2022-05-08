@@ -24,6 +24,8 @@ class MentorDashboard : AppCompatActivity() {
     private lateinit var sharedPreferences: SharedPreferences
     private lateinit var editor: SharedPreferences.Editor
     var count = 1
+    var ratingReview = RatingReview(this)
+    lateinit var username:String
 
     var data:Array<Int> = Array(3){0}
     var data2:Array<Int> = Array(3){0}
@@ -35,6 +37,7 @@ class MentorDashboard : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_mentor_dashboard)
+
 
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
         editor = sharedPreferences.edit()
@@ -51,6 +54,7 @@ class MentorDashboard : AppCompatActivity() {
 
 
         var i = intent
+        username = i.getStringExtra("usernameFromLogin").toString()
         var (a,b,c,d) = userextradetails.fetchData(i.getStringExtra("usernameFromLogin"))
         System.out.println("A = $a\n B = $b\n C = $c\n D = $d")
         var mentorName = (a.toString() + " " + b.toString())
@@ -145,7 +149,9 @@ class MentorDashboard : AppCompatActivity() {
                     drawerLayout.closeDrawer(GravityCompat.START)
                 }
                 R.id.QA -> Toast.makeText(applicationContext, "Question/Answer", Toast.LENGTH_LONG).show()
-                R.id.ChatUs -> Toast.makeText(applicationContext, "ChatUs", Toast.LENGTH_LONG).show()
+                R.id.Feedback -> {
+                    feedbackAlertBox(username)
+                }
                 R.id.ContactUS -> {
                     val builder: android.app.AlertDialog.Builder = android.app.AlertDialog.Builder(this)
                     builder.setTitle("Type details below:")
@@ -185,6 +191,8 @@ class MentorDashboard : AppCompatActivity() {
         }
 
     }
+
+
 
     override fun onBackPressed() {
         if(count==1){
@@ -256,5 +264,85 @@ class MentorDashboard : AppCompatActivity() {
 
         }
         dialog.show()
+    }
+
+    private fun feedbackAlertBox(username:String) {
+        var dialog = Dialog(this)
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog.setContentView(R.layout.feedback)
+
+        var rating = 0
+
+        var cancel:Button = dialog.findViewById(R.id.cancel)
+        var share:Button = dialog.findViewById(R.id.share)
+        var review:EditText = dialog.findViewById(R.id.Review)
+
+        var star1:Button = dialog.findViewById(R.id.Star1)
+        var star2:Button = dialog.findViewById(R.id.Star2)
+        var star3:Button = dialog.findViewById(R.id.Star3)
+        var star4:Button = dialog.findViewById(R.id.Star4)
+        var star5:Button = dialog.findViewById(R.id.Star5)
+
+        star1.setOnClickListener {
+            star1.setCompoundDrawablesWithIntrinsicBounds(R.drawable.rating_star1,0,0,0)
+            star2.setCompoundDrawablesWithIntrinsicBounds(R.drawable.rating_star0,0,0,0)
+            star3.setCompoundDrawablesWithIntrinsicBounds(R.drawable.rating_star0,0,0,0)
+            star4.setCompoundDrawablesWithIntrinsicBounds(R.drawable.rating_star0,0,0,0)
+            star5.setCompoundDrawablesWithIntrinsicBounds(R.drawable.rating_star0,0,0,0)
+            rating = 1
+        }
+        star2.setOnClickListener {
+            star1.setCompoundDrawablesWithIntrinsicBounds(R.drawable.rating_star1,0,0,0)
+            star2.setCompoundDrawablesWithIntrinsicBounds(R.drawable.rating_star1,0,0,0)
+            star3.setCompoundDrawablesWithIntrinsicBounds(R.drawable.rating_star0,0,0,0)
+            star4.setCompoundDrawablesWithIntrinsicBounds(R.drawable.rating_star0,0,0,0)
+            star5.setCompoundDrawablesWithIntrinsicBounds(R.drawable.rating_star0,0,0,0)
+            rating = 2
+        }
+        star3.setOnClickListener {
+            star1.setCompoundDrawablesWithIntrinsicBounds(R.drawable.rating_star1,0,0,0)
+            star2.setCompoundDrawablesWithIntrinsicBounds(R.drawable.rating_star1,0,0,0)
+            star3.setCompoundDrawablesWithIntrinsicBounds(R.drawable.rating_star1,0,0,0)
+            star4.setCompoundDrawablesWithIntrinsicBounds(R.drawable.rating_star0,0,0,0)
+            star5.setCompoundDrawablesWithIntrinsicBounds(R.drawable.rating_star0,0,0,0)
+            rating = 3
+        }
+        star4.setOnClickListener {
+            star1.setCompoundDrawablesWithIntrinsicBounds(R.drawable.rating_star1,0,0,0)
+            star2.setCompoundDrawablesWithIntrinsicBounds(R.drawable.rating_star1,0,0,0)
+            star3.setCompoundDrawablesWithIntrinsicBounds(R.drawable.rating_star1,0,0,0)
+            star4.setCompoundDrawablesWithIntrinsicBounds(R.drawable.rating_star1,0,0,0)
+            star5.setCompoundDrawablesWithIntrinsicBounds(R.drawable.rating_star0,0,0,0)
+            rating = 4
+        }
+        star5.setOnClickListener {
+            star1.setCompoundDrawablesWithIntrinsicBounds(R.drawable.rating_star1,0,0,0)
+            star2.setCompoundDrawablesWithIntrinsicBounds(R.drawable.rating_star1,0,0,0)
+            star3.setCompoundDrawablesWithIntrinsicBounds(R.drawable.rating_star1,0,0,0)
+            star4.setCompoundDrawablesWithIntrinsicBounds(R.drawable.rating_star1,0,0,0)
+            star5.setCompoundDrawablesWithIntrinsicBounds(R.drawable.rating_star1,0,0,0)
+            rating = 5
+        }
+
+        share.setOnClickListener {
+            if (rating==0){
+                Toast.makeText(this,"Give Some Rating!", Toast.LENGTH_SHORT).show()
+            }
+            else if(review.text.isEmpty()){
+                Toast.makeText(this,"Enter Some Review!", Toast.LENGTH_SHORT).show()
+            }
+            else{
+                ratingReview.addReview(username,rating,review.text.toString())
+                Toast.makeText(this,"Thank You! for the Review!", Toast.LENGTH_LONG).show()
+                dialog.dismiss()
+            }
+        }
+        cancel.setOnClickListener {
+            dialog.dismiss()
+        }
+
+
+        dialog.show()
+
     }
 }

@@ -71,7 +71,8 @@ class QuizCreationInfo : AppCompatActivity() {
             var quizDetail:Quizdetail = Quizdetail(username,mentorName.text.toString(),quizName.text.toString(),spin.selectedItem.toString(),subject.text.toString(),duration.text.toString().toInt(),date.text.toString(),time.text.toString(),Attempts.selectedItem.toString().toInt(),quizType.selectedItem.toString(),quizPurpose.selectedItem.toString(),totalQuestion.text.toString().toInt(),maximumMarks.text.toString().toInt(),guideline.text.toString())
             quizInfoDatabase.addQuizDetail(quizDetail)
             if (quizType.selectedItem.equals("Free")){
-                accountDataFromQuizCreation = AccountSummaryDataClass(i.getStringExtra("MentorName").toString(),quizName.text.toString(),spin.selectedItem.toString(), quizType.selectedItem.toString(),totalQuestion.text.toString().toInt(),1,0,0.0,0)
+                accountDataFromQuizCreation = AccountSummaryDataClass(i.getStringExtra("usernameFromLogin").toString(),quizName.text.toString(),spin.selectedItem.toString(), quizType.selectedItem.toString(),totalQuestion.text.toString().toInt(),1,0,0.0,0)
+
             }
             else{
                 when(spin.selectedItem.toString()){

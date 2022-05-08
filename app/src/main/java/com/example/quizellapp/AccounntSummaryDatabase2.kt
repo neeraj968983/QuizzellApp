@@ -138,7 +138,7 @@ class AccounntSummaryDatabase2(context: Context):SQLiteOpenHelper(context, datab
                 attemptsGiven = 0
             }
             else{
-                attemptsGiven = cursor.getInt(4)
+                attemptsGiven = cursor.getInt(5)
             }
             quizStudentList.add(mentorQuizStudentData(cursor.getString(0), attemptsGiven))
         }

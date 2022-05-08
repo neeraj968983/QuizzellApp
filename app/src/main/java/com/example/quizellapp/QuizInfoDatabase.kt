@@ -202,4 +202,18 @@ class QuizInfoDatabase(context: Context) : SQLiteOpenHelper(context, databaseNam
         return dataOfList
     }
 
+    fun getDetailOfFinnishedQuiz(quizzName: String?):Array<String>{
+        var finishedQuizArray:Array<String> = Array(4){""}
+        var db = this.readableDatabase
+        var selection = "$COL3 = ?"
+        var selectionArgs = arrayOf(quizzName)
+        var cursor = db.query(tableName,null,selection,selectionArgs,null,null,null)
+        if (cursor.moveToNext()){
+            finishedQuizArray = arrayOf(cursor.getString(1),cursor.getString(2),cursor.getString(3),cursor.getString(9))
+        }
+        db.close()
+        return finishedQuizArray
+    }
+
+
 }

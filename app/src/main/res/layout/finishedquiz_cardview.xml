@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="0dp"
+    app:cardElevation="0dp"
+    android:backgroundTint="@color/transparent"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="14dp"
+            android:orientation="horizontal"
+            android:paddingLeft="10dp"
+            android:background="@color/yellow"
+            >
+
+            <TextView
+                android:id="@+id/MentorName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mentor Name"
+                android:textSize="10dp"
+                android:textColor="@color/black"
+                android:gravity="top"
+                />
+
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@color/YellowShade"
+            android:gravity="center"
+            >
+
+            <TextView
+                android:id="@+id/QuizName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Quiz Name"
+                android:textStyle="bold"
+                android:textSize="20dp"
+                android:textColor="@color/black"
+                android:layout_marginLeft="100dp"
+                />
+
+            <TextView
+                android:id="@+id/Score"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Score"
+                android:textStyle="bold"
+                android:textSize="16dp"
+                android:textColor="@color/black"
+                android:gravity="center_horizontal|center_vertical"
+                />
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="13dp"
+            android:orientation="horizontal"
+            android:background="@color/YellowShade"
+            >
+
+            <TextView
+                android:id="@+id/Category"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Category"
+                android:textSize="10dp"
+                android:textColor="@color/black"
+                android:layout_marginLeft="125dp"
+                />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingLeft="10dp"
+            android:backgroundTint="@color/YellowShade"
+            android:background="@drawable/quizlistborder"
+
+            >
+
+            <TextView
+                android:id="@+id/QuizType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Free"
+                android:textStyle="bold"
+                android:textSize="12dp"
+                android:layout_marginLeft="20dp"
+                android:textColor="@color/purple_500"
+                android:gravity="center|start"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:background="@color/transparent"/>
+
+
+
+
+    </LinearLayout>
+
+
+</androidx.cardview.widget.CardView>

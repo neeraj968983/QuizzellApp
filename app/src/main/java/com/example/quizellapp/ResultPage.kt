@@ -40,6 +40,11 @@ class ResultPage : AppCompatActivity() {
         var skipped:TextView = findViewById(R.id.Skipped)
         var exitButton:TextView = findViewById(R.id.ExitButton)
 
+        var attemptedQuestion = i.getIntExtra("attempted",0)
+        var correctAnswer = i.getIntExtra("correct",0)
+        var wrongAnswer = i.getIntExtra("wrong",0)
+        var skippedQuestions = i.getIntExtra("skipped", 0)
+
         username.setText(""+userName)
         quizName.setText(""+quizname)
         category.setText(""+quizInfo.category)
@@ -50,10 +55,10 @@ class ResultPage : AppCompatActivity() {
         val df = DecimalFormat("00.00")
         df.roundingMode = RoundingMode.DOWN
         yourScore.setText(""+df.format(percent)+"%")
-        attempted.setText(""+i.getIntExtra("attempted",0))
-        correct.setText(""+i.getIntExtra("correct",0))
-        wrong.setText(""+i.getIntExtra("wrong",0))
-        skipped.setText(""+i.getIntExtra("skipped", 0))
+        attempted.setText(""+attemptedQuestion)
+        correct.setText(""+correctAnswer)
+        wrong.setText(""+wrongAnswer)
+        skipped.setText(""+skippedQuestions)
 
 
         System.out.println("Marks = $marks \n MaxMarks = ${quizInfo.maxmarks} \n percntage is $percent")
@@ -94,12 +99,13 @@ class ResultPage : AppCompatActivity() {
             if(check==1){
                 if(attemptsLeft>0){
                     if(score>percent){
-                        updatedScore = score
+
                     }
                     else{
                         updatedScore = percent
+                        scoreDatabase.updateAteempt(userName,quizname,(attemptsLeft-1),updatedScore,attemptedQuestion,correctAnswer,wrongAnswer,skippedQuestions)
                     }
-                    scoreDatabase.updateAteempt(userName,quizname,(attemptsLeft-1),updatedScore)
+
                     Toast.makeText(this,"Your Attempt left reduce by 1 and score updated",Toast.LENGTH_SHORT).show()
                 }
                 else{

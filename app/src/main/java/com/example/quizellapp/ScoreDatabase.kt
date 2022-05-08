@@ -90,18 +90,21 @@ class ScoreDatabase(context:Context): SQLiteOpenHelper(context, databaseName, nu
             flag = 0
         }
         var details = updateAttemptsAndMarks(flag,attempts,score)
-
-
+        db.close()
         return details
     }
 
-    fun updateAteempt(username:String?, quizname:String?, attemptsleft:Int, UpdatedScore:Double){
+    fun updateAteempt(username:String?, quizname:String?, attemptsleft:Int, UpdatedScore:Double, updatedQuestionAttempts:Int, updatedCorrectAnswer:Int, updatedWrongAnswer:Int, updatedSkippedQuestion:Int){
         val db = this.writableDatabase
         val selection = "$COL1 = ? AND $COL2 = ?"
         val selectionArgs = arrayOf(username, quizname)
         val values = ContentValues()
         values.put(COL12,attemptsleft)
         values.put(COL7,UpdatedScore)
+        values.put(COL8,updatedQuestionAttempts)
+        values.put(COL9,updatedCorrectAnswer)
+        values.put(COL10,updatedWrongAnswer)
+        values.put(COL11,updatedSkippedQuestion)
 
         db.update(tableName,values,selection,selectionArgs)
         db.close()
@@ -117,7 +120,7 @@ class ScoreDatabase(context:Context): SQLiteOpenHelper(context, databaseName, nu
         while (cursor.moveToNext()){
             count++
         }
-
+        db.close()
         return count
     }
 
@@ -129,6 +132,7 @@ class ScoreDatabase(context:Context): SQLiteOpenHelper(context, databaseName, nu
         while (cursor.moveToNext()){
             studentList.add(ListOfStudent(cursor.getString(0),cursor.getDouble(6)))
         }
+        db.close()
         return studentList
     }
 
@@ -141,7 +145,35 @@ class ScoreDatabase(context:Context): SQLiteOpenHelper(context, databaseName, nu
         if(cursor.moveToNext()){
             score = cursor.getDouble(6)
         }
+        db.close()
         return score
+    }
+
+    fun getQuizNameAndScoreWithZeroAttemptsLeft(username: String?):ArrayList<finishedQuizDataClass>{
+        var quizNameAndScoreList:ArrayList<finishedQuizDataClass> = ArrayList()
+        val db = this.readableDatabase
+        val selection = "$COL1 = ?"
+        val selectionArgs = arrayOf(username)
+        var cursor = db.query(tableName,null,selection,selectionArgs,null,null,null)
+        while (cursor.moveToNext()){
+            if(cursor.getInt(11)==0){
+                quizNameAndScoreList.add(finishedQuizDataClass(cursor.getString(1),cursor.getDouble(6)))
+            }
+        }
+        db.close()
+        return quizNameAndScoreList
+    }
+
+    fun getScoreAllDetails(username: String?,quizname: String?):resultDetail{
+        var scoreData:resultDetail = resultDetail("","","","",0,0,0.0,0,0,0,0,0)
+        val db = this.readableDatabase
+        val selection = "$COL1 = ? AND $COL2 = ?"
+        val selectionArgs = arrayOf(username,quizname)
+        val cursor = db.query(tableName,null,selection,selectionArgs,null,null,null)
+        if (cursor.moveToNext()){
+            scoreData = resultDetail(cursor.getString(0),cursor.getString(1),cursor.getString(2),cursor.getString(3),cursor.getInt(4),cursor.getInt(5),cursor.getDouble(6),cursor.getInt(7),cursor.getInt(8),cursor.getInt(9),cursor.getInt(10),cursor.getInt(11))
+        }
+        return scoreData
     }
 
 }
