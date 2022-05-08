@@ -54,15 +54,15 @@ class AccountSummaryDatabase(context:Context):SQLiteOpenHelper(context, database
     fun addDataToAccountSummary(accountSummaryDataClass: AccountSummaryDataClass){
         val db = this.writableDatabase
         val values = ContentValues()
-        values.put(COL1, accountSummaryDataClass.mentorName)
+        values.put(COL1, accountSummaryDataClass.userName)
         values.put(COL2, accountSummaryDataClass.category)
         values.put(COL4,accountSummaryDataClass.freeQuiz)
         values.put(COL5,accountSummaryDataClass.paidQuiz)
         values.put(COL6,0)
         values.put(COL7,0)
         values.put(COL8,0)
-        values.put(COL9,0)
-        values.put(COL10,0)
+        values.put(COL9,accountSummaryDataClass.cash)
+        values.put(COL10,accountSummaryDataClass.coin)
         values.put(COL11, accountSummaryDataClass.totalQuestions)
         values.put(COL12, accountSummaryDataClass.quizType)
         values.put(COL13, accountSummaryDataClass.quizname)
@@ -70,7 +70,49 @@ class AccountSummaryDatabase(context:Context):SQLiteOpenHelper(context, database
         db.insert(tablename,null,values)
         db.close()
     }
-    fun quizCreationPageUpdate(){
+    fun getTotalQuizList(username:String?):Array<Int>{
+        var totalfreequiz:Int = 0
+        var totalpaidquiz:Int = 0
+        val db = this.readableDatabase
+        val selection = "$COL1 = ?"
+        val selectionArgs = arrayOf(username)
+        var cursor = db.query(tablename,null,selection,selectionArgs,null,null,null)
+        while (cursor.moveToNext()){
+            totalfreequiz += cursor.getInt(2)
+            totalpaidquiz += cursor.getInt(3)
+        }
+        return arrayOf(totalfreequiz,totalpaidquiz,(totalfreequiz+totalpaidquiz))
+        db.close()
+    }
 
+    fun getTotalCashCoinQuizName(mentorname:String):cashCoin{
+        var cash:ArrayList<Double> = ArrayList()
+        var quizname:ArrayList<String> = ArrayList()
+        var coin:Int = 0
+        var db = this.readableDatabase
+        var selection = "$COL1 = ?"
+        var selectionArgs = arrayOf(mentorname)
+        var cursor = db.query(tablename,null,selection,selectionArgs,null,null,null)
+        while (cursor.moveToNext()){
+            cash.add(cursor.getDouble(8))
+            quizname.add(cursor.getString(11))
+            coin = coin + cursor.getInt(9)
+            System.out.println("Cursor moves times")
+        }
+        var data= cashCoin(cash,coin,quizname)
+        return data
+        db.close()
+    }
+
+    fun getMentorName(quizname:String?):String{
+        var mentorname:String = ""
+        val db = this.readableDatabase
+        val selection = "$COL12 = ?"
+        val selecttionArgs = arrayOf(quizname)
+        val cursor = db.query(tablename,null,selection,selecttionArgs,null,null,null)
+        if (cursor.moveToNext()){
+            mentorname = cursor.getString(11)
+        }
+        return mentorname
     }
 }

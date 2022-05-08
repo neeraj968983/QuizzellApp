@@ -68,6 +68,7 @@ class AccounntSummaryDatabase2(context: Context):SQLiteOpenHelper(context, datab
             Attempts = cursor.getInt(5)
         }
         return Attempts
+        db.close()
 
     }
     fun addAttempt(candidatename:String?,quizname:String?, attempt:Int){
@@ -79,6 +80,7 @@ class AccounntSummaryDatabase2(context: Context):SQLiteOpenHelper(context, datab
         values.put(COL6,attempt)
 
         db.update(tablename,values,selection,selectionArgs)
+        db.close()
     }
 
     fun checkCandidate(candidatename: String?, quizname:String?):Boolean{
@@ -87,5 +89,34 @@ class AccounntSummaryDatabase2(context: Context):SQLiteOpenHelper(context, datab
         val selectionArgs = arrayOf(candidatename,quizname)
         val cursor = db.query(tablename,null,selection,selectionArgs,null,null,null)
         return cursor.moveToNext()
+        db.close()
+    }
+
+    fun getData(mentorname:String?):Array<Int>{
+        var freeQuizTotalStudentAttempted:Int = 0
+        var paidQuizTotalStudentAttempted:Int = 0
+        var paidTotalAttempts:Int = 0
+        val db = this.readableDatabase
+        val selection = "$COL2 = ?"
+        val selectionArgs = arrayOf(mentorname)
+        val cursor = db.query(tablename,null,selection,selectionArgs,null,null,null)
+        while (cursor.moveToNext()){
+            freeQuizTotalStudentAttempted += cursor.getInt(3)
+            paidQuizTotalStudentAttempted += cursor.getInt(4)
+            paidTotalAttempts += cursor.getInt(5)
+        }
+        return arrayOf(freeQuizTotalStudentAttempted,paidQuizTotalStudentAttempted,paidTotalAttempts)
+        db.close()
+    }
+    fun getAttemptsByList(quizname: String?):Int{
+        var paidquizattempts:Int = 0
+        val db = this.readableDatabase
+        val selection = "$COL8 = ?"
+        val selectionArgs = arrayOf(quizname)
+        val cursor = db.query(tablename,null,selection,selectionArgs,null,null,null)
+        while (cursor.moveToNext()){
+            paidquizattempts += cursor.getInt(4)
+        }
+        return paidquizattempts
     }
 }

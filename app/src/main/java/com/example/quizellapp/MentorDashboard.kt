@@ -23,6 +23,12 @@ class MentorDashboard : AppCompatActivity() {
     private lateinit var sharedPreferences: SharedPreferences
     private lateinit var editor: SharedPreferences.Editor
     var count = 1
+
+    var data:Array<Int> = Array(3){0}
+    var data2:Array<Int> = Array(3){0}
+    lateinit var data3:cashCoin
+    var totalcash:Double = 0.0
+
     lateinit var toggle : ActionBarDrawerToggle
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,12 +43,21 @@ class MentorDashboard : AppCompatActivity() {
         var logout:LinearLayout = findViewById(R.id.logout)
 
         var userextradetails:UserExtraDetails = UserExtraDetails(this)
+        var accountSummaryDatabase = AccountSummaryDatabase(this)
+        var accounntSummaryDatabase2 = AccounntSummaryDatabase2(this)
+        var cashAccounts = cashAccount(this)
 
 
         var i = intent
         var (a,b,c,d) = userextradetails.fetchData(i.getStringExtra("usernameFromLogin"))
         System.out.println("A = $a\n B = $b\n C = $c\n D = $d")
         var mentorName = (a.toString() + " " + b.toString())
+
+        data = accountSummaryDatabase.getTotalQuizList(mentorName) //Data for Account Summary
+        data2 = accounntSummaryDatabase2.getData(mentorName)
+        data3 = accountSummaryDatabase.getTotalCashCoinQuizName(i.getStringExtra("usernameFromLogin").toString())
+
+        totalcash = cashAccounts.totalCash(i.getStringExtra("usernameFromLogin").toString())
 
         toggle = ActionBarDrawerToggle(this,drawerLayout,findViewById(R.id.toolbar),R.string.open,R.string.close)
         drawerLayout.addDrawerListener(toggle)
@@ -151,6 +166,27 @@ class MentorDashboard : AppCompatActivity() {
         var exit:Button = dialog.findViewById(R.id.Exit)
         var withdraw:Button = dialog.findViewById(R.id.Withdraw)
         var info:TextView = dialog.findViewById(R.id.Information)
+        var totalfreeQuiz:TextView = dialog.findViewById(R.id.totalquizzes)
+        var totalpaidQuiz:TextView = dialog.findViewById(R.id.FreeQuizzes)
+        var totalquiz:TextView = dialog.findViewById(R.id.PaidQuizzes)
+        var freeStudentAttempts:TextView = dialog.findViewById(R.id.StudentAttempted)
+        var paidStudentAttempts:TextView = dialog.findViewById(R.id.PaidQuizzesAttempted)
+        var paidTotalAttempts:TextView = dialog.findViewById(R.id.PaidTotalAttempts)
+        var coins:TextView = dialog.findViewById(R.id.Coins)
+        var cash:TextView = dialog.findViewById(R.id.Cash)
+
+
+        totalfreeQuiz.setText(""+data[0])
+        totalpaidQuiz.setText(""+data[1])
+        totalquiz.setText(""+data[2])
+        freeStudentAttempts.setText(""+data2[0])
+        paidStudentAttempts.setText(""+data2[1])
+        paidTotalAttempts.setText(""+data2[2])
+        coins.setText(""+data2[2]*data3.coin)
+        cash.setText(""+totalcash)
+
+        System.out.println("Student = ${data2[1]} and Cash is ${data3.cash}")
+
 
         exit.setOnClickListener {
             dialog.dismiss()
