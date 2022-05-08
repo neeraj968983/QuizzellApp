@@ -154,6 +154,7 @@ class QuizCreationInfo : AppCompatActivity() {
             intent.putExtra("TotalQuestion",totalQuestion.text.toString().toInt())
             intent.putExtra("QuizName",quizName.text.toString())
             intent.putExtra("Category",spin.selectedItem.toString())
+            intent.putExtra("Count",1)
             startActivity(intent)
         }
     }

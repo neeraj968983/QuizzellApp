@@ -4,12 +4,15 @@ import android.app.Activity
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.Button
 import android.widget.TextView
 
 class CustomAdaptorQuestionBook (private val context: Activity, private var mentorname:List<String>, private var question:List<String>, private var optionA:List<String>, private var optionB:List<String>,private var optionC:List<String>, private var optionD:List<String>, private var correctOption:List<String>)
     : ArrayAdapter<String>(context,R.layout.questionbook_cardview, question){
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
+
+        var flag = 0
         val inflater = context.layoutInflater
         val rowView = inflater.inflate(R.layout.questionbook_cardview,null,true)
 

@@ -133,23 +133,13 @@
                 android:textColor="@color/black"
                 android:textSize="9dp"
                 android:textStyle="bold"
+                android:layout_marginBottom="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
 
         </LinearLayout>
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/AddButton"
-            android:layout_width="40dp"
-            android:layout_height="27dp"
-            android:backgroundTint="@color/grey"
-            android:padding="0dp"
-            android:text="Add+"
-            android:textSize="7dp"
-            app:strokeColor="@color/grey"
-            app:strokeWidth="1dp"
-            android:layout_marginLeft="340dp"
-            />
+
         <LinearLayout
             android:orientation="horizontal"
             android:background="@color/grey"

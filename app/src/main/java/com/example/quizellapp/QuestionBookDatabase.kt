@@ -61,4 +61,28 @@ class QuestionBookDatabase(context: Context):SQLiteOpenHelper(context, database,
         db.insert(tablename,null,values)
         db.close()
     }
+
+    fun getAllQuestion():ArrayList<QuestionBookDetailDataClass>{
+        var allQuestionsList:ArrayList<QuestionBookDetailDataClass> = ArrayList()
+        val db = this.readableDatabase
+        val cursor = db.query(tablename,null,null,null,null,null,null)
+        while (cursor.moveToNext()){
+            allQuestionsList.add(QuestionBookDetailDataClass(cursor.getString(0),cursor.getString(1),cursor.getString(2),cursor.getString(3),cursor.getString(4),cursor.getString(5),cursor.getString(6),cursor.getString(7),cursor.getString(8)))
+        }
+        db.close()
+        return allQuestionsList
+    }
+
+    fun getQuestionDetail(question:String?):Question{
+        var questionDetail:Question = Question("","","","","","","")
+        val db = this.readableDatabase
+        val selection = "$COL4 = ?"
+        val selectionArgs = arrayOf(question)
+        val cursor = db.query(tablename,null,selection,selectionArgs,null,null,null)
+        if (cursor.moveToNext()){
+            questionDetail = Question(cursor.getString(1),cursor.getString(3),cursor.getString(4),cursor.getString(5),cursor.getString(6),cursor.getString(7),cursor.getString(8))
+        }
+        db.close()
+        return questionDetail
+    }
 }

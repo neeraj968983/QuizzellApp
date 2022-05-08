@@ -21,7 +21,8 @@ class QuizQuestionCreation : AppCompatActivity() {
         var category = i.getStringExtra("Category")
 
         System.out.println("Category in quizquestioncreation page is: $category")
-        var count:Int = 1
+        var count:Int = i.getIntExtra("Count",0)
+        System.out.println("Count in QuizQuestioncreation is $count")
 
         var nextques:Button = findViewById(R.id.NextButton)
 
@@ -35,6 +36,7 @@ class QuizQuestionCreation : AppCompatActivity() {
         var opt2:EditText = findViewById(R.id.Option2)
         var opt3:EditText = findViewById(R.id.Option3)
         var opt4:EditText = findViewById(R.id.Option4)
+        val questionBookButton:Button = findViewById(R.id.QuestionBook)
         val correctOption:Spinner = findViewById(R.id.CorrectOption)
 
         ArrayAdapter.createFromResource(this,R.array.options,android.R.layout.simple_spinner_dropdown_item).also{
@@ -43,7 +45,7 @@ class QuizQuestionCreation : AppCompatActivity() {
             correctOption.adapter = adapter
             correctOption.setSelection(0,true)
 
-            questionNumber.setText("Question $count: ")
+            questionNumber.setText("Question ${count}: ")
         nextques.setOnClickListener(){
             if(totalCount>=count){
                 var question:Question = Question(quizName,ques.text.toString(),opt1.text.toString(),opt2.text.toString(),opt3.text.toString(),opt4.text.toString(),correctOption.selectedItem.toString())
@@ -73,6 +75,15 @@ class QuizQuestionCreation : AppCompatActivity() {
 
                 }
             }
+            }
+            questionBookButton.setOnClickListener {
+                var intent:Intent = Intent(this,QuestionBook::class.java)
+                intent.putExtra("usernameFromLogin", username)
+                intent.putExtra("Count", (count))
+                intent.putExtra("totalQuestion", totalCount)
+                intent.putExtra("Category",i.getStringExtra("Category"))
+                intent.putExtra("QuizName",i.getStringExtra("QuizName"))
+                startActivity(intent)
             }
         }
     }

@@ -44,6 +44,7 @@ class QuestionDatabase(context: Context) : SQLiteOpenHelper(context, databaseNam
     }
 
     fun addQuestion(questin:Question){
+        System.out.println("Question data base = question added......//")
         var db = this.writableDatabase
         var values = ContentValues()
         values.put(COL1,questin.quizname)
@@ -55,7 +56,6 @@ class QuestionDatabase(context: Context) : SQLiteOpenHelper(context, databaseNam
         values.put(COL7,questin.correctOption)
 
         db.insert(tableName,null,values)
-        db.close()
 
     }
 
