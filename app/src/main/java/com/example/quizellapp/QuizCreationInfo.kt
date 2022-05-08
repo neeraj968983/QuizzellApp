@@ -153,6 +153,7 @@ class QuizCreationInfo : AppCompatActivity() {
             intent.putExtra("usernameFromLogin",username)
             intent.putExtra("TotalQuestion",totalQuestion.text.toString().toInt())
             intent.putExtra("QuizName",quizName.text.toString())
+            intent.putExtra("Category",spin.selectedItem.toString())
             startActivity(intent)
         }
     }

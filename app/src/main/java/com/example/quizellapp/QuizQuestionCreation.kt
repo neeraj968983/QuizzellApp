@@ -13,10 +13,14 @@ class QuizQuestionCreation : AppCompatActivity() {
         setContentView(R.layout.activity_quiz_question_creation)
 
         var questionDatabase:QuestionDatabase = QuestionDatabase(this)
+        var questionBookDatabase = QuestionBookDatabase(this)
 
         var i = intent
         var totalCount = i.getIntExtra("TotalQuestion",0)
         var username = i.getStringExtra("usernameFromLogin")
+        var category = i.getStringExtra("Category")
+
+        System.out.println("Category in quizquestioncreation page is: $category")
         var count:Int = 1
 
         var nextques:Button = findViewById(R.id.NextButton)
@@ -44,6 +48,8 @@ class QuizQuestionCreation : AppCompatActivity() {
             if(totalCount>=count){
                 var question:Question = Question(quizName,ques.text.toString(),opt1.text.toString(),opt2.text.toString(),opt3.text.toString(),opt4.text.toString(),correctOption.selectedItem.toString())
                 questionDatabase.addQuestion(question)
+                var questionBook = QuestionBookDetailDataClass(username,quizName,category,ques.text.toString(),opt1.text.toString(),opt2.text.toString(),opt3.text.toString(),opt4.text.toString(),correctOption.selectedItem.toString())
+                questionBookDatabase.addQuestionToQuestionBook(questionBook)
                 System.out.println("total Count : $totalCount and count : $count")
                 ques.setText("")
                 opt1.setText("")

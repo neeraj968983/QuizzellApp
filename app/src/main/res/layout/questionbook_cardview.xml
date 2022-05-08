@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
+
+        <TextView
+            android:id="@+id/MentorName"
+            android:text="Mentor Name"
+            android:textSize="9dp"
+            android:layout_gravity="right"
+            android:layout_marginRight="10dp"
+            android:textColor="@color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/Question"
+            android:text="Question"
+            android:textSize="10dp"
+            android:minLines="3"
+            android:textColor="@color/black"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp">
+            <TextView
+                android:id="@+id/OptionALabel"
+                android:text="A) "
+                android:textColor="@color/black"
+                android:textSize="9dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/OptionAValue"
+                android:text="Option value "
+                android:textColor="@color/black"
+                android:textSize="9dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp">
+            <TextView
+                android:id="@+id/OptionBLabel"
+                android:text="B) "
+                android:textColor="@color/black"
+                android:textSize="9dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/OptionBValue"
+                android:text="Option value "
+                android:textColor="@color/black"
+                android:textSize="9dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp">
+            <TextView
+                android:id="@+id/OptionCLabel"
+                android:text="C) "
+                android:textColor="@color/black"
+                android:textSize="9dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/OptionCValue"
+                android:text="Option value "
+                android:textColor="@color/black"
+                android:textSize="9dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp">
+            <TextView
+                android:id="@+id/OptionDLabel"
+                android:text="A) "
+                android:textColor="@color/black"
+                android:textSize="9dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/OptionDValue"
+                android:text="Option value "
+                android:textColor="@color/black"
+                android:textSize="9dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:layout_marginTop="2dp">
+            <TextView
+                android:id="@+id/CorrectOptionLabel"
+                android:text="Correct Option: "
+                android:textColor="@color/black"
+                android:textSize="9dp"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/CorrectOptionValue"
+                android:text="Option value "
+                android:textColor="@color/black"
+                android:textSize="9dp"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+
+        </LinearLayout>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/AddButton"
+            android:layout_width="40dp"
+            android:layout_height="27dp"
+            android:backgroundTint="@color/grey"
+            android:padding="0dp"
+            android:text="Add+"
+            android:textSize="7dp"
+            app:strokeColor="@color/grey"
+            app:strokeWidth="1dp"
+            android:layout_marginLeft="340dp"
+            />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:background="@color/grey"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
+    </LinearLayout>
+
+
+
+</androidx.cardview.widget.CardView>

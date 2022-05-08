@@ -16,4 +16,5 @@
     <color name="userscoreColor">#491967</color>
     <color name="yellow">#FFEA2D</color>
     <color name="YellowShade">#7EEFDF4E</color>
+    <color name="whiteShade">#A8FFFFFF</color>
 </resources>

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.quizellapp">
-    <uses-permission android:name="android.permission.SEND_SMS"/>
+
+    <uses-permission android:name="android.permission.SEND_SMS" />
 
     <application
         android:allowBackup="true"
@@ -10,7 +11,8 @@
         android:roundIcon="@mipmap/app_logo_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Quizellapp">
-        <activity android:name=".RankingCategory"></activity>
+        <activity android:name=".QuestionBook"></activity>
+        <activity android:name=".RankingCategory" />
         <activity android:name=".RankingPage" />
         <activity android:name=".ResultPage" />
         <activity android:name=".PrivacyMentor" />
