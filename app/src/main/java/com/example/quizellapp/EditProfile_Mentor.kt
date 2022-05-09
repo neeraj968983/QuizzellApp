@@ -74,7 +74,8 @@ class EditProfile_Mentor : AppCompatActivity() {
                 startActivity(intent)
             }
             else {
-                Toast.makeText(this,"Username not registered!", Toast.LENGTH_SHORT).show()
+                var userextradetail: extraDetail = extraDetail(uname, Fname.text.toString(), Lname.text.toString(), gender.selectedItem.toString(), address.text.toString())
+                userextradetails.addUser(userextradetail)
             }
         }
 
