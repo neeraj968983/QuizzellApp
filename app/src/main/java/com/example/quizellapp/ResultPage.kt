@@ -21,7 +21,7 @@ class ResultPage : AppCompatActivity() {
         var i = intent
         var quizname = i.getStringExtra("QuizName")
         var totalAttempts = quizInfoDatabase.totalAttempts(quizname)
-        var marks = i.getIntExtra("marksObtained",0)
+        var marks = i.getDoubleExtra("marksObtained",0.0)
         var userName = i.getStringExtra("username")
 
         var quizInfo:Quizdetail = quizInfoDatabase.quizAllData(quizname)
@@ -51,7 +51,8 @@ class ResultPage : AppCompatActivity() {
         topic.setText(""+quizInfo.subject)
         maxmarks.setText(""+quizInfo.maxmarks)
         totalQuestions.setText(""+quizInfo.totalquestions)
-        var percent:Double = ((marks.toDouble()/quizInfo.maxmarks.toDouble())*100)
+        System.out.println("marks in result page is $marks")
+        var percent:Double = ((marks/quizInfo.maxmarks.toDouble())*100)
         val df = DecimalFormat("00.00")
         df.roundingMode = RoundingMode.DOWN
         yourScore.setText(""+df.format(percent)+"%")

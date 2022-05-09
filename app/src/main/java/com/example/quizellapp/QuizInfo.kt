@@ -38,11 +38,13 @@ class QuizInfo : AppCompatActivity() {
         var attemptLeft:TextView = findViewById(R.id.Attemptsleft)
         var quizType:TextView = findViewById(R.id.quiztype)
         var maxmarks:TextView = findViewById(R.id.maxmarks)
+        var totalQuestion:TextView = findViewById(R.id.totalQuestions)
         var guideline:TextView = findViewById(R.id.guidelinebox)
 
         var start:Button = findViewById(R.id.buttonstart)
         val back:Button = findViewById(R.id.buttonback)
 
+        var totalQuestions = quizInfoDatabase.totalQuestions(quizname)
 
 
         var (a,b,c,d,e) = quizInfoDatabase.quizInformation(quizname)
@@ -52,6 +54,7 @@ class QuizInfo : AppCompatActivity() {
         quizType.setText(""+c)
         maxmarks.setText(""+d)
         guideline.setText(""+e)
+        totalQuestion.setText(""+totalQuestions)
 
         System.out.println("Attempts Left: $attemptsLefts and Quiz Type: $c")
 

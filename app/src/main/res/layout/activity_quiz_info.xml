@@ -43,7 +43,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/textview6"
         android:layout_centerHorizontal="true"
-        android:textSize="30sp"
+        android:textSize="24dp"
         android:textStyle="bold|italic"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -64,7 +64,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.23"
+        app:layout_constraintVertical_bias="0.22"
         app:layout_constraintHorizontal_bias="0.15"/>
 
     <TextView
@@ -79,7 +79,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.28"
+        app:layout_constraintVertical_bias="0.27"
         app:layout_constraintHorizontal_bias="0.14"/>
 
     <TextView
@@ -94,7 +94,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.33"
+        app:layout_constraintVertical_bias="0.32"
         app:layout_constraintHorizontal_bias="0.15"/>
 
         <TextView
@@ -109,7 +109,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.38"
+            app:layout_constraintVertical_bias="0.37"
             app:layout_constraintHorizontal_bias="0.15"/>
 
         <TextView
@@ -124,7 +124,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.43"
+            app:layout_constraintVertical_bias="0.42"
             app:layout_constraintHorizontal_bias="0.15"/>
 
         <TextView
@@ -140,7 +140,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.48"
+            app:layout_constraintVertical_bias="0.47"
             app:layout_constraintHorizontal_bias="0.15"/>
 
         <TextView
@@ -153,7 +153,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.235"
+            app:layout_constraintVertical_bias="0.225"
             app:layout_constraintHorizontal_bias="0.65"/>
 
         <TextView
@@ -166,7 +166,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.285"
+            app:layout_constraintVertical_bias="0.275"
             app:layout_constraintHorizontal_bias="0.65"/>
 
         <TextView
@@ -179,7 +179,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.335"
+            app:layout_constraintVertical_bias="0.325"
             app:layout_constraintHorizontal_bias="0.65"/>
 
 
@@ -193,7 +193,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.385"
+            app:layout_constraintVertical_bias="0.375"
             app:layout_constraintHorizontal_bias="0.65"/>
 
         <TextView
@@ -207,7 +207,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.435"
+            app:layout_constraintVertical_bias="0.425"
             app:layout_constraintHorizontal_bias="0.65"/>
 
         <TextView
@@ -220,8 +220,37 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.485"
+            app:layout_constraintVertical_bias="0.475"
             app:layout_constraintHorizontal_bias="0.65"/>
+
+    <TextView
+        android:id="@+id/totalQuestionsLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textview11"
+        android:layout_alignParentStart="true"
+        android:text="Total Question:"
+        android:textSize="18dp"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.52"
+        app:layout_constraintHorizontal_bias="0.15"/>
+
+    <TextView
+        android:id="@+id/totalQuestions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="18dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.525"
+        app:layout_constraintHorizontal_bias="0.65"/>
 
         <TextView
             android:id="@+id/guideline"
@@ -263,6 +292,7 @@
             app:cornerRadius="20dp"
             android:text="Back"
             android:textSize="16dp"
+            android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

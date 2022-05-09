@@ -52,7 +52,6 @@ class QuizQuestionCreation : AppCompatActivity() {
                 questionDatabase.addQuestion(question)
                 var questionBook = QuestionBookDetailDataClass(username,quizName,category,ques.text.toString(),opt1.text.toString(),opt2.text.toString(),opt3.text.toString(),opt4.text.toString(),correctOption.selectedItem.toString())
                 questionBookDatabase.addQuestionToQuestionBook(questionBook)
-                System.out.println("total Count : $totalCount and count : $count")
                 ques.setText("")
                 opt1.setText("")
                 opt2.setText("")

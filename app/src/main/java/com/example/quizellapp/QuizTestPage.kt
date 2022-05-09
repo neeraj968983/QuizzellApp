@@ -19,7 +19,7 @@ import java.text.DecimalFormat
 
 class QuizTestPage : AppCompatActivity() {
     lateinit var quizname:String
-    var marksGained:Int = 0
+    var marksGained:Double = 0.0
     var attempted:Int = 0
     var correct:Int = 0
     var wrong:Int = 0
@@ -37,6 +37,8 @@ class QuizTestPage : AppCompatActivity() {
         var subject:TextView = findViewById(R.id.TestSubject)
         var MM:TextView = findViewById(R.id.Maxmarks)
         var duration:TextView = findViewById(R.id.TestDuration)
+        var totalQuestions:TextView = findViewById(R.id.TotalQuestions)
+
 
 
 
@@ -60,6 +62,7 @@ class QuizTestPage : AppCompatActivity() {
         category.setText("" + quizInfo.category)
         subject.setText("Topic: " + quizInfo.subject)
         MM.setText("Max. Marks: "+ quizInfo.maxmarks)
+        totalQuestions.setText("Total Questions: "+totalQuestion)
 
         var timer = object : CountDownTimer(durationTime, 1000){
             override fun onTick(millisUntilFinished: Long) {
@@ -91,9 +94,9 @@ class QuizTestPage : AppCompatActivity() {
         var op3:Button = findViewById(R.id.Option3)
         var op4:Button = findViewById(R.id.Option4)
         var optionSelected = "E"
-        marksGained = 0
+        marksGained = 0.0
         var maxMarks:Int = quizInfo.maxmarks
-        var marksPerQuestion = maxMarks/totalQuestion
+        var marksPerQuestion:Double = maxMarks.toDouble()/totalQuestion.toDouble()
 
 
         var questions:ArrayList<QuestionAndOption> = questionDatabase.getQuestionList(quizname)
@@ -275,7 +278,8 @@ class QuizTestPage : AppCompatActivity() {
 
     }
 
-    private fun goStudentHomePage(marksObtained:Int, attempted:Int, correct:Int, wrong:Int, skipped:Int, username:String) {
+    private fun goStudentHomePage(marksObtained:Double, attempted:Int, correct:Int, wrong:Int, skipped:Int, username:String) {
+        System.out.println("Marks obtained in quiz test page is: $marksObtained")
         var intent:Intent = Intent(this, ResultPage::class.java)
         intent.putExtra("QuizName", quizname)
         intent.putExtra("attempted", attempted)
