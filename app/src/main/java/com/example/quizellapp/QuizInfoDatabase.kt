@@ -54,6 +54,17 @@ class QuizInfoDatabase(context: Context) : SQLiteOpenHelper(context, databaseNam
         onCreate(db)
     }
 
+    fun checkQuizAvailableAlready(quizzName: String?):Boolean{
+        val db = this.readableDatabase
+        val selection = "$COL3 = ?"
+        val selectionArgs = arrayOf(quizzName)
+        val cursor = db.query(tableName,null,selection,selectionArgs,null,null,null)
+
+        System.out.println("function check : ${cursor.moveToNext()}............////")
+        return cursor.moveToNext()
+        db.close()
+    }
+
     fun addQuizDetail(quizdetail:Quizdetail){
         var db = this.writableDatabase
         var values = ContentValues()

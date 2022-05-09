@@ -115,7 +115,7 @@ class AccounntSummaryDatabase2(context: Context):SQLiteOpenHelper(context, datab
         val selectionArgs = arrayOf(quizname)
         val cursor = db.query(tablename,null,selection,selectionArgs,null,null,null)
         while (cursor.moveToNext()){
-            if(cursor.getString(5).equals("Free")){
+            if(cursor.getString(6).equals("Free")){
                 attempts += cursor.getInt(3)
             }
             else{
@@ -134,7 +134,7 @@ class AccounntSummaryDatabase2(context: Context):SQLiteOpenHelper(context, datab
         val selectionArgs = arrayOf(quizname)
         val cursor = db.query(tablename,null,selection,selectionArgs,null,null,null)
         while (cursor.moveToNext()){
-            if(cursor.getString(5).equals("Free")){
+            if(cursor.getString(6).equals("Free")){
                 attemptsGiven = 0
             }
             else{
