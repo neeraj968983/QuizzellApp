@@ -10,6 +10,8 @@ class QuizCreationInfo : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_quiz_creation_info)
 
+        var check:Boolean
+
         var cashrate:Double
         var coinrate:Int
         val quizInfoDatabase:QuizInfoDatabase = QuizInfoDatabase(this)
@@ -68,11 +70,13 @@ class QuizCreationInfo : AppCompatActivity() {
             onBackPressed()
         }
         next.setOnClickListener(){
-            var check = quizInfoDatabase.checkQuizAvailableAlready(quizName.text.toString())
+            System.out.println("Quizname is ${quizName.text.toString()}")
+            check = quizInfoDatabase.checkQuizAvailableAlready(quizName.text.toString())
+            System.out.println("Value of check in quizCreationPage is $check")
             if (check){
                 Toast.makeText(this,"Quiz Name Already Available!",Toast.LENGTH_LONG).show()
             }
-            else if(check==false){
+            else{
                 if (quizType.selectedItem.equals("Free")){
                     accountDataFromQuizCreation = AccountSummaryDataClass(i.getStringExtra("usernameFromLogin").toString(),quizName.text.toString(),spin.selectedItem.toString(), quizType.selectedItem.toString(),totalQuestion.text.toString().toInt(),1,0,0.0,0)
 

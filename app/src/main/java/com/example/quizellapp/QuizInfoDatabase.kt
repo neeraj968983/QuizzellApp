@@ -55,12 +55,12 @@ class QuizInfoDatabase(context: Context) : SQLiteOpenHelper(context, databaseNam
     }
 
     fun checkQuizAvailableAlready(quizzName: String?):Boolean{
+        System.out.println("Quizname in database is $quizzName")
         val db = this.readableDatabase
         val selection = "$COL3 = ?"
         val selectionArgs = arrayOf(quizzName)
         val cursor = db.query(tableName,null,selection,selectionArgs,null,null,null)
 
-        System.out.println("function check : ${cursor.moveToNext()}............////")
         return cursor.moveToNext()
         db.close()
     }
