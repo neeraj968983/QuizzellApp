@@ -66,8 +66,6 @@ class DatabaseHelperClass(context: Context) : SQLiteOpenHelper(context, database
 
     }
 
-
-
     fun fetchLocalData(uname:String?):Array<Any>{
         var emID = ""
         var birth:Long = 0
@@ -121,5 +119,36 @@ class DatabaseHelperClass(context: Context) : SQLiteOpenHelper(context, database
 
 
         dbconnect.close()
+    }
+
+    fun verifyUsernameAndContact(usernameAndContactdataclass: usernameAndContactdataclass):Boolean{
+        System.out.println("username: ${usernameAndContactdataclass.username} \n Contact: ${usernameAndContactdataclass.contact}")
+        var flag = false
+        val db = this.readableDatabase
+        val selection = "$COL1 = ?"
+        val selectionArgs = arrayOf(usernameAndContactdataclass.username)
+        val cursor = db.query(tableName,null,selection,selectionArgs,null,null,null)
+        if (cursor.moveToNext()){
+            System.out.println("Contact in database is ${cursor.getInt(3).toLong()}")
+            if (usernameAndContactdataclass.contact.toInt()==(cursor.getInt(3))){
+                System.out.println("True")
+                flag = true
+            }
+            else{
+                System.out.println("False")
+                flag = false
+            }
+        }
+        return flag
+    }
+
+    fun changePasswordThroughOTP(username:String,password:String){
+        val db = this.writableDatabase
+        val selection = "$COL1 = ?"
+        val selectionArgs = arrayOf(username)
+        val values = ContentValues()
+        values.put(COL5,password)
+        db.update(tableName,values,selection,selectionArgs)
+        db.close()
     }
 }

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 
 class LoginRegisterPage : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,6 +23,7 @@ class LoginRegisterPage : AppCompatActivity() {
 
         signup.setOnClickListener(){
             val intent: Intent = Intent(this, RegisterPage::class.java)
+            Toast.makeText(this,"Before register give permission for sms",Toast.LENGTH_LONG).show()
             startActivity(intent)
         }
 
