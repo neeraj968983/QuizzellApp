@@ -111,6 +111,18 @@ class ScoreDatabase(context:Context): SQLiteOpenHelper(context, databaseName, nu
 
     }
 
+    fun updateAttempt(username:String?, quizname:String?, attemptsleft:Int){
+        val db = this.writableDatabase
+        val selection = "$COL1 = ? AND $COL2 = ?"
+        val selectionArgs = arrayOf(username, quizname)
+        val values = ContentValues()
+        values.put(COL12,attemptsleft)
+
+        db.update(tableName,values,selection,selectionArgs)
+        db.close()
+
+    }
+
     fun countTotalRow(quizname:String?):Int{
         var count = 0
         val db = this.readableDatabase
@@ -174,6 +186,21 @@ class ScoreDatabase(context:Context): SQLiteOpenHelper(context, databaseName, nu
             scoreData = resultDetail(cursor.getString(0),cursor.getString(1),cursor.getString(2),cursor.getString(3),cursor.getInt(4),cursor.getInt(5),cursor.getDouble(6),cursor.getInt(7),cursor.getInt(8),cursor.getInt(9),cursor.getInt(10),cursor.getInt(11))
         }
         return scoreData
+    }
+
+    fun getQuizNameWithAttemptsLeft(username: String?):ArrayList<NewQuizzesDataClass>{
+        var quizNameList:ArrayList<NewQuizzesDataClass> = ArrayList()
+        val db = this.readableDatabase
+        val selection = "$COL1 = ?"
+        val selectionArgs = arrayOf(username)
+        var cursor = db.query(tableName,null,selection,selectionArgs,null,null,null)
+        while (cursor.moveToNext()){
+            if(cursor.getInt(11)>0){
+                quizNameList.add(NewQuizzesDataClass(cursor.getString(1),cursor.getInt(11)))
+            }
+        }
+        db.close()
+        return quizNameList
     }
 
 }

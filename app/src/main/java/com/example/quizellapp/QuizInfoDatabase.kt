@@ -226,5 +226,33 @@ class QuizInfoDatabase(context: Context) : SQLiteOpenHelper(context, databaseNam
         return finishedQuizArray
     }
 
+    fun getDetailOfNewQuizWithAttemptsLeft(quizname: String?):Array<String>{
+        var quizWithAttemptLeft:Array<String> = Array(3){""}
+        var db = this.readableDatabase
+        var selection = "$COL3 = ?"
+        var selectionArgs = arrayOf(quizname)
+        var cursor = db.query(tableName,null,selection,selectionArgs,null,null,null)
+        if (cursor.moveToNext()){
+            System.out.println("Quiz present with attempts left")
+            quizWithAttemptLeft = arrayOf(cursor.getString(1),cursor.getString(3),cursor.getString(9))
+        }
+        db.close()
+        return quizWithAttemptLeft
+    }
+
+    fun getMaxmmarksAndDurationOfNewQuizWithAttemptsLeft(quizname: String?):Array<Int>{
+        var quizWithAttemptLeft:Array<Int> = Array(2){0}
+        var db = this.readableDatabase
+        var selection = "$COL3 = ?"
+        var selectionArgs = arrayOf(quizname)
+        System.out.println("Quiz present with attempts left duration function")
+        var cursor = db.query(tableName,null,selection,selectionArgs,null,null,null)
+        if (cursor.moveToNext()){
+            quizWithAttemptLeft = arrayOf(cursor.getInt(5),cursor.getInt(12))
+        }
+        db.close()
+        return quizWithAttemptLeft
+    }
+
 
 }

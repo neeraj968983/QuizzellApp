@@ -131,6 +131,7 @@ class StudentHomePage : AppCompatActivity() {
                 }
                 R.id.New_Quizzes -> {
                     intent = Intent(this, NewQuizzes::class.java)
+                    intent.putExtra("username",i.getStringExtra("usernameFromLogin").toString())
                     startActivity(intent)
                 }
                 R.id.QA -> Toast.makeText(applicationContext, "Question/Answer", Toast.LENGTH_LONG).show()

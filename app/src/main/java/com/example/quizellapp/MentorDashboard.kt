@@ -71,9 +71,7 @@ class MentorDashboard : AppCompatActivity() {
 
         supportActionBar?.setDisplayShowHomeEnabled(true)
 
-        var candidatename = arrayListOf<String>()
-        var candidateattempts = arrayListOf<Int>()
-        var candidatescore = arrayListOf<Double>()
+
 
 
         var data = accountSummaryDatabase.getMentorQuizList(i.getStringExtra("usernameFromLogin").toString())
@@ -95,9 +93,14 @@ class MentorDashboard : AppCompatActivity() {
 
         val listView:ListView = findViewById(R.id.MentorQuizList)
         val listView2:ListView = findViewById(R.id.StudentList)
+
         val myAdaptor = CustomAdaptorMentorQuizList(this,quiznames,categories,quiztype,studentAttempts)
         listView.adapter = myAdaptor
         listView.setOnItemClickListener { parent, view, position, id ->
+
+            var candidatename = arrayListOf<String>()
+            var candidateattempts = arrayListOf<Int>()
+            var candidatescore = arrayListOf<Double>()
             var data2 = accounntSummaryDatabase2.getCandidateNameAndAttempts(parent.getItemAtPosition(position).toString())
             var QUIZNAME = parent.getItemAtPosition(position).toString()
 

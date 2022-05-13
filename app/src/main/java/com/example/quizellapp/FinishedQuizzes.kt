@@ -65,6 +65,7 @@ class FinishedQuizzes : AppCompatActivity() {
             when (it.itemId) {
                 R.id.newQuizzes -> {
                     var intent: Intent = Intent(this, NewQuizzes::class.java)
+                    intent.putExtra("username",i.getStringExtra("usernameFromLogin").toString())
                     startActivity(intent)
                 }
                 R.id.back -> {

@@ -96,18 +96,19 @@ class ResultPage : AppCompatActivity() {
             var score:Double = detail.score
             var check:Int = detail.check
             var attemptsLeft:Int = detail.attemptsLeft
+            System.out.println("Score : $score \n Check : $check \n Attempts left : $attemptsLeft")
             var updatedScore:Double
             if(check==1){
                 if(attemptsLeft>0){
                     if(score>percent){
-
+                        scoreDatabase.updateAttempt(userName,quizname,(attemptsLeft-1))
                     }
                     else{
                         updatedScore = percent
                         scoreDatabase.updateAteempt(userName,quizname,(attemptsLeft-1),updatedScore,attemptedQuestion,correctAnswer,wrongAnswer,skippedQuestions)
                     }
 
-                    Toast.makeText(this,"Your Attempt left reduce by 1 and score updated",Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this,"Your Attempt reduce by 1 and score updated",Toast.LENGTH_SHORT).show()
                 }
                 else{
                     Toast.makeText(this,"This Attempt is not countable",Toast.LENGTH_SHORT).show()
