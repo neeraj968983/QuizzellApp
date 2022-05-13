@@ -7,12 +7,12 @@ import android.widget.ArrayAdapter
 import android.widget.TextView
 import org.w3c.dom.Text
 
-class QuizListCustomAdaptor(private val context:Activity, var quizname:ArrayList<String>, var mentorName:ArrayList<String>, var quizType:ArrayList<String>,var cateGory:ArrayList<String>, var maxMarks:ArrayList<Int>, var duraTion:ArrayList<Int>, var totalAttempts:ArrayList<Int>)
-    : ArrayAdapter<String>(context,R.layout.quiz_list_cardview, quizname){
+class PendingQuizzes(private val context:Activity, var quizname:ArrayList<String>, var mentorName:ArrayList<String>, var quizType:ArrayList<String>,var cateGory:ArrayList<String>, var maxMarks:ArrayList<Int>, var duraTion:ArrayList<Int>, var totalAttempts:ArrayList<Int>)
+    : ArrayAdapter<String>(context,R.layout.newquizzes_listview, quizname){
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         val inflater = context.layoutInflater
-        val rowView = inflater.inflate(R.layout.quiz_list_cardview,null,true)
+        val rowView = inflater.inflate(R.layout.newquizzes_listview,null,true)
 
         val quizName:TextView = rowView.findViewById(R.id.QuizName)
         val mentorname:TextView = rowView.findViewById(R.id.MentorName)

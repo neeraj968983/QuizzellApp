@@ -10,7 +10,7 @@ class DatabaseHelperClass(context: Context) : SQLiteOpenHelper(context, database
     private val CreateTable = ("create table "+ tableName+ "(" +
             COL1 + " Text Primary key, " +
             COL2 + " Text, " +
-            COL3 + " Integer, " +
+            COL3 + " Text, " +
             COL4 + " Integer, " +
             COL5 + " Text) ")
 
@@ -64,6 +64,15 @@ class DatabaseHelperClass(context: Context) : SQLiteOpenHelper(context, database
 
         return cursorCount > 0
 
+    }
+
+    fun checkUserIsThere(username: String):Boolean{
+        val db = this.readableDatabase
+        val selection = "$COL1 = ?"
+        val selectionArgs = arrayOf(username)
+        val cursor = db.query(tableName,null,selection,selectionArgs,null,null,null)
+        return cursor.moveToNext()
+        db.close()
     }
 
     fun fetchLocalData(uname:String?):Array<Any>{

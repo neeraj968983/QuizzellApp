@@ -6,8 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="80dp"
     android:layout_margin="0dp"
-    app:cardElevation="0dp"
-    android:backgroundTint="@color/transparent"
+    app:cardElevation="2dp"
+    android:backgroundTint="@color/white"
     >
     <LinearLayout
         android:layout_width="match_parent"

@@ -27,7 +27,7 @@
 
             <TextView
                 android:id="@+id/MentorName"
-                android:layout_width="wrap_content"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:text="Mentor Name"
                 android:textSize="10dp"
@@ -37,14 +37,14 @@
 
             <TextView
                 android:id="@+id/QuizType"
-                android:layout_width="80dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="Free"
                 android:textSize="12dp"
                 android:textStyle="bold"
-                android:layout_marginLeft="140dp"
                 android:textColor="@color/purple_500"
-                android:gravity="top|right"
+                android:gravity="right|top"
+                android:layout_marginRight="10dp"
                 />
 
         </LinearLayout>
@@ -90,7 +90,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="10dp"
+            android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:paddingLeft="10dp"
             android:background="@color/YellowShade"
@@ -101,38 +101,47 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Max. marks: "
-                android:textSize="8dp"
+                android:textStyle="bold"
+                android:textSize="9dp"
                 android:textColor="@color/black"
                 android:gravity="center|start"
                 />
             <TextView
                 android:id="@+id/MaxMarks"
-                android:layout_width="wrap_content"
+                android:layout_width="20dp"
                 android:layout_height="wrap_content"
                 android:text="100"
-                android:textSize="8dp"
+                android:textSize="9dp"
+                android:textStyle="bold"
                 android:textColor="@color/black"
                 android:gravity="center|start"
                 />
-            <TextView
-                android:id="@+id/DurationLabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Duration: "
-                android:textSize="8dp"
-                android:textColor="@color/black"
-                android:layout_marginLeft="140dp"
-                android:gravity="bottom|right"
-                />
-            <TextView
-                android:id="@+id/Duration"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="20 minutes"
-                android:textSize="8dp"
-                android:textColor="@color/black"
-                android:gravity="bottom|right"
-                />
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="right"
+                android:layout_marginRight="10dp">
+                <TextView
+                    android:id="@+id/DurationLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Duration: "
+                    android:textSize="9dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    />
+                <TextView
+                    android:id="@+id/Duration"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="20 minutes"
+                    android:textSize="9dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    />
+            </LinearLayout>
+
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"

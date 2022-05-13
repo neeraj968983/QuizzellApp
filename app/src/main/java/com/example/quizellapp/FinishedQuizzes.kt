@@ -47,33 +47,6 @@ class FinishedQuizzes : AppCompatActivity() {
             scores.add(quizAndScoreListWithZeroAttemptsLeft[j].score)
         }
 
-        var drawerLayout:DrawerLayout = findViewById(R.id.drawerLayout)
-        var navView: NavigationView = findViewById(R.id.nav_view)
-
-
-        toggle = ActionBarDrawerToggle(this, drawerLayout, findViewById(R.id.toolbar), R.string.open, R.string.close)
-        drawerLayout.addDrawerListener(toggle)
-        toggle.syncState()
-
-        supportActionBar?.setDisplayShowHomeEnabled(true)
-
-
-
-
-        navView.setNavigationItemSelectedListener {
-
-            when (it.itemId) {
-                R.id.newQuizzes -> {
-                    var intent: Intent = Intent(this, NewQuizzes::class.java)
-                    intent.putExtra("username",i.getStringExtra("usernameFromLogin").toString())
-                    startActivity(intent)
-                }
-                R.id.back -> {
-                    onBackPressed()
-                }
-            }
-            true
-        }
 
         val listView:ListView = findViewById(R.id.FinishedQuizListView)
         val myAdaptor = CustomAdaptorFinishedQuiz(this,quizNames,mentorNames,quiztypes,categories,scores)

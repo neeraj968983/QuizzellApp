@@ -65,9 +65,7 @@ class QuizInfo : AppCompatActivity() {
             }
             else{
                 if (c.toString().equals("Free")){
-                    System.out.println("Username: $username and Quiz Name: $quizname.............//")
                     if(accounntSummaryDatabase2.checkCandidate(username,quizname)){
-                        System.out.println("User already there")
 
                     }
                     else {

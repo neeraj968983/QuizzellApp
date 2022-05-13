@@ -20,6 +20,7 @@ class NewQuizzes : AppCompatActivity() {
         var scoreDatabase = ScoreDatabase(this)
         var quizInfoDatabase = QuizInfoDatabase(this)
         var i = intent
+        var quizName= ""
 
 
 
@@ -54,11 +55,17 @@ class NewQuizzes : AppCompatActivity() {
 
 
         var listView:ListView = findViewById(R.id.NewQuizListView)
-        val myAdaptor = QuizListCustomAdaptor(this,quizNamesWithAttemptLeft,mentorNames,quiztypes,categories,maxMarks,durations,quizAttemptsLeft)
+        val myAdaptor = PendingQuizzes(this,quizNamesWithAttemptLeft,mentorNames,quiztypes,categories,maxMarks,durations,quizAttemptsLeft)
         listView.adapter = myAdaptor
         listView.setBackgroundColor(Color.parseColor("#81FFFFFF"))
         listView.setOnItemClickListener { parent, view, position, id ->
-            System.out.println(parent.getItemAtPosition(position).toString())
+            quizName = parent.getItemAtPosition(position).toString()
+            if(quizName != "") {
+                var intent = Intent(this, QuizInfo::class.java)
+                intent.putExtra("QuizName", quizName)
+                intent.putExtra("username", i.getStringExtra("username"))
+                startActivity(intent)
+            }
         }
 
     }

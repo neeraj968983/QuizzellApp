@@ -5,6 +5,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.TextView
+import java.math.RoundingMode
+import java.text.DecimalFormat
 
 class CustomAdaptorStudentList(private val context: Activity, private var candidateName:List<String>, private var attemptsGiven:List<Int>, private var score:List<Double>)
     : ArrayAdapter<String>(context,R.layout.mentor_quiz_students_cardview, candidateName){
@@ -12,6 +14,9 @@ class CustomAdaptorStudentList(private val context: Activity, private var candid
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         val inflater = context.layoutInflater
         val rowView = inflater.inflate(R.layout.mentor_quiz_students_cardview,null,true)
+
+        val df = DecimalFormat("00.00")
+        df.roundingMode = RoundingMode.DOWN
 
         val serialno: TextView = rowView.findViewById(R.id.SerialNum)
         val candidatename: TextView = rowView.findViewById(R.id.Candidate)
@@ -21,7 +26,7 @@ class CustomAdaptorStudentList(private val context: Activity, private var candid
         serialno.text = (position+1).toString()
         candidatename.text = candidateName[position]
         attemptGiven.text = attemptsGiven[position].toString()
-        Score.text = score[position].toString()
+        Score.text = df.format(score[position]).toString()
 
         return rowView
     }

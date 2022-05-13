@@ -129,7 +129,7 @@ class StudentHomePage : AppCompatActivity() {
                     intent.putExtra("username",i.getStringExtra("usernameFromLogin").toString())
                     startActivity(intent)
                 }
-                R.id.New_Quizzes -> {
+                R.id.PendingQuizzes -> {
                     intent = Intent(this, NewQuizzes::class.java)
                     intent.putExtra("username",i.getStringExtra("usernameFromLogin").toString())
                     startActivity(intent)
