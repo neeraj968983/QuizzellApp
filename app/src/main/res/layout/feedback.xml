@@ -89,7 +89,7 @@
             android:layout_gravity="center"
             android:hint="Please tell us about your experience"
             android:textSize="10dp"
-            android:layout_width="200dp"
+            android:layout_width="220dp"
             android:layout_height="wrap_content"
             android:background="@drawable/reviewbox"
             />

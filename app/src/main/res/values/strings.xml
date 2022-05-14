@@ -10,6 +10,7 @@
     <string name="checkBox">checkBox</string>
     <string name="name">name</string>
     <string name="password">password</string>
+    <string name="get_otp"><u>Get OTP</u></string>
 
     <string-array name="Category">
         <item>Aptitude</item>

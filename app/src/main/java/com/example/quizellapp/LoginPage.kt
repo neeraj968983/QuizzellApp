@@ -117,7 +117,7 @@ class LoginPage : AppCompatActivity() {
 
         var username:EditText = dialog.findViewById(R.id.username)
         var contact:EditText = dialog.findViewById(R.id.MobileNumber)
-        var getOtp:Button = dialog.findViewById(R.id.GetOTP)
+        var getOtp:TextView = dialog.findViewById(R.id.GetOTP)
         var otp:EditText = dialog.findViewById(R.id.OTP)
         var submit:Button = dialog.findViewById(R.id.SubmitButton)
 

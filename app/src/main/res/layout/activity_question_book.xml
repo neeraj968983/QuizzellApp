@@ -85,7 +85,7 @@
         android:id="@+id/QuestionBookList"
         android:layout_width="360dp"
         android:layout_height="450dp"
-        android:background="@color/whiteShade"
+        android:background="@drawable/questionbook_listview_design"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.483"

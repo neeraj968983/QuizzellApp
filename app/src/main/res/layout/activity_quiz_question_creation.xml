@@ -33,7 +33,7 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/QuestionBook"
-        android:layout_width="100dp"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
         android:text="Question Book +"
         android:backgroundTint="@color/Buttongrey"
@@ -41,6 +41,7 @@
         android:textColor="@color/black"
         app:strokeWidth="1dp"
         android:textSize="10dp"
+        android:drawableLeft="@drawable/ic_baseline_content_paste_search_24"
         app:layout_constraintVertical_bias="0.2"
         app:layout_constraintHorizontal_bias="0.9"
         app:layout_constraintBottom_toBottomOf="parent"

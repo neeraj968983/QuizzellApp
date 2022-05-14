@@ -8,196 +8,209 @@
     android:background="@drawable/loginregister_gradient"
     >
 
-    <TextView
-        android:id="@+id/TestQuizName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Quiz Title"
-        android:textSize="35sp"
-        android:textStyle="bold"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.06" />
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/Testcategory"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Quiz Category"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.14" />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:gravity="right"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp">
+            <TextView
+                android:id="@+id/TestDuration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:text="Time Left: 00:00"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:layout_marginRight="20dp"
+                />
 
-    <TextView
-        android:id="@+id/TestSubject"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Quiz Topic"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.23" />
+        </LinearLayout>
 
-    <TextView
-        android:id="@+id/Maxmarks"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Max. Marks"
-        android:textSize="20sp"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.8"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.23" />
+        <LinearLayout
+            android:layout_marginTop="40dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+            <TextView
+                android:id="@+id/TestQuizName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Quiz Title"
+                android:textSize="35sp"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                />
 
-    <TextView
-        android:id="@+id/TotalQuestions"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Total Questions:"
-        android:textSize="20sp"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.8"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.2" />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+            <TextView
+                android:id="@+id/Testcategory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Quiz Category"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                />
+        </LinearLayout>
 
-    <TextView
-        android:id="@+id/question"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:width="350sp"
-        android:height="120sp"
-        android:text="Question 1: Select any one option?"
-        android:textSize="16sp"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.35" />
+        <LinearLayout
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/TestSubject"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:text="Quiz Topic"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:layout_marginLeft="30dp"
+                />
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/Maxmarks"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Max. Marks"
+                    android:textSize="12dp"
+                    android:textColor="@color/white"
+                    />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/Option1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:width="150sp"
-        android:height="30sp"
-        android:textSize="12sp"
-        android:backgroundTint="@color/white"
-        android:textColor="@color/black"
-        app:cornerRadius="10dp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.16"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.51" />
+                <TextView
+                    android:id="@+id/TotalQuestions"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Total Questions:"
+                    android:textSize="12dp"
+                    android:textColor="@color/white"
+                    />
 
-    <Button
-        android:id="@+id/Option2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:width="150sp"
-        android:height="30sp"
-        android:textSize="12sp"
-        android:backgroundTint="@color/white"
-        android:textColor="@color/black"
-        app:cornerRadius="10dp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.858"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.51" />
+            </LinearLayout>
+        </LinearLayout>
 
-    <Button
-        android:id="@+id/Option3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:width="150sp"
-        android:height="30sp"
-        android:textSize="12sp"
-        android:backgroundTint="@color/white"
-        android:textColor="@color/black"
-        app:cornerRadius="10dp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.16"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.61" />
+        <TextView
+            android:id="@+id/question"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:width="350sp"
+            android:height="120sp"
+            android:text="Question 1: Select any one option?"
+            android:textSize="16sp"
+            android:textColor="@color/white"
+            android:layout_marginLeft="30dp"
+            />
 
-    <Button
-        android:id="@+id/Option4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:width="150sp"
-        android:height="30sp"
-        android:textSize="12sp"
-        android:backgroundTint="@color/white"
-        android:textColor="@color/black"
-        app:cornerRadius="10dp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.858"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.61" />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+            <Button
+                android:id="@+id/Option1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:width="150sp"
+                android:height="30sp"
+                android:textSize="12sp"
+                android:backgroundTint="@color/white"
+                android:textColor="@color/black"
+                app:cornerRadius="10dp"
+                android:textStyle="bold"
+                />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/next"
-        android:layout_width="wrap_content"
-        android:layout_height="60dp"
-        android:text="Next"
-        android:textSize="18sp"
-        android:backgroundTint="@color/white"
-        app:cornerRadius="20dp"
-        android:textColor="@color/black"
-        android:textStyle="bold"
-        app:strokeColor="@color/black"
-        app:strokeWidth="4dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.8"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.8" />
+            <Button
+                android:id="@+id/Option2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:width="150sp"
+                android:height="30sp"
+                android:textSize="12sp"
+                android:backgroundTint="@color/white"
+                android:textColor="@color/black"
+                app:cornerRadius="10dp"
+                android:textStyle="bold"
+                android:layout_marginLeft="20dp"
+                />
+        </LinearLayout>
 
-    <TextView
-        android:id="@+id/TestDuration"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/white"
-        android:textSize="14sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.945"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.022" />
+        <LinearLayout
+            android:layout_marginTop="18dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+            <Button
+                android:id="@+id/Option3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:width="150sp"
+                android:height="30sp"
+                android:textSize="12sp"
+                android:backgroundTint="@color/white"
+                android:textColor="@color/black"
+                app:cornerRadius="10dp"
+                android:textStyle="bold"
+                />
+
+            <Button
+                android:id="@+id/Option4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:width="150sp"
+                android:height="30sp"
+                android:textSize="12sp"
+                android:backgroundTint="@color/white"
+                android:textColor="@color/black"
+                app:cornerRadius="10dp"
+                android:textStyle="bold"
+                android:layout_marginLeft="20dp"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:layout_marginRight="50dp"
+            android:layout_marginTop="30dp">
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/next"
+                android:layout_width="wrap_content"
+                android:layout_height="60dp"
+                android:text="Next"
+                android:textSize="18sp"
+                android:backgroundTint="@color/white"
+                app:cornerRadius="20dp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                app:strokeColor="@color/black"
+                app:strokeWidth="4dp"
+                />
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

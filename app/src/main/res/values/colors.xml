@@ -18,4 +18,6 @@
     <color name="YellowShade">#7EEFDF4E</color>
     <color name="whiteShade">#A8FFFFFF</color>
     <color name="Buttongrey">#C0C0C0</color>
+    <color name="forgotPassword">#356183</color>
+    <color name="blue">#0113D3</color>
 </resources>
