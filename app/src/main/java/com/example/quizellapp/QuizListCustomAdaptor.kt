@@ -22,6 +22,10 @@ class QuizListCustomAdaptor(private val context:Activity, var quizname:ArrayList
         val duration:TextView = rowView.findViewById(R.id.Duration)
         val attemptleft:TextView = rowView.findViewById(R.id.AttemptLeft)
 
+        if (quizType[position].equals("Paid")){
+            quiztype.setBackgroundResource(R.drawable.ic_baseline_bookmark_paid)
+        }
+
         quizName.text = quizname[position]
         mentorname.text = mentorName[position]
         quiztype.text = quizType[position]

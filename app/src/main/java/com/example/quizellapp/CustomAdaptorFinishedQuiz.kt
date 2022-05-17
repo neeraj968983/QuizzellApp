@@ -23,6 +23,10 @@ class CustomAdaptorFinishedQuiz(private val context:Activity, var quizname:Array
         val category:TextView = rowView.findViewById(R.id.Category)
         val Score:TextView = rowView.findViewById(R.id.Score)
 
+        if (quizType[position].equals("Paid")){
+            quiztype.setTextColor(Color.RED)
+        }
+
         quizName.text = quizname[position]
         mentorname.text = mentorName[position]
         quiztype.text = quizType[position]
