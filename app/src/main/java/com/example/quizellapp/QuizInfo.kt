@@ -1,6 +1,7 @@
 package com.example.quizellapp
 
 import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -18,6 +19,7 @@ class QuizInfo : AppCompatActivity() {
 
         var quizInfoDatabase:QuizInfoDatabase = QuizInfoDatabase(this)
         var accounntSummaryDatabase2 = AccounntSummaryDatabase2(this)
+        var notesDatabase = NotesDatabase(this)
         var dataFromQuizInfo:AccountSummaryDataClass2
         var scoreDatabase = ScoreDatabase(this)
 
@@ -43,6 +45,22 @@ class QuizInfo : AppCompatActivity() {
 
         var start:Button = findViewById(R.id.buttonstart)
         val back:Button = findViewById(R.id.buttonback)
+        val seeNotes:Button = findViewById(R.id.SeeNotes)
+
+        var checkNotes:Boolean = notesDatabase.checkNotesAvailable(quizname.toString())
+
+        if(checkNotes){
+            seeNotes.isEnabled = true
+            seeNotes.setTextColor(Color.WHITE)
+            seeNotes.setCompoundDrawablesWithIntrinsicBounds(R.drawable.view_eye_enabled,0,0,0)
+        }
+        else{
+            seeNotes.isEnabled = false
+            seeNotes.setTextColor(Color.parseColor("#434343"))
+            seeNotes.setCompoundDrawablesWithIntrinsicBounds(R.drawable.view_eye,0,0,0)
+        }
+
+
 
         var totalQuestions = quizInfoDatabase.totalQuestions(quizname)
 
@@ -55,6 +73,14 @@ class QuizInfo : AppCompatActivity() {
         maxmarks.setText(""+d)
         guideline.setText(""+e)
         totalQuestion.setText(""+totalQuestions)
+
+        seeNotes.setOnClickListener{
+            var intent = Intent(this,NotesView::class.java)
+            intent.putExtra("QuizName",quizname)
+            intent.putExtra("username", username)
+            intent.putExtra("AttemptsLeft",attemptsLefts)
+            startActivity(intent)
+        }
 
         System.out.println("Attempts Left: $attemptsLefts and Quiz Type: $c")
 

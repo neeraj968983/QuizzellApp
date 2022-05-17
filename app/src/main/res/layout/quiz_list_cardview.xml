@@ -154,7 +154,7 @@
                 android:id="@+id/AttemptLeftLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="Attempts Left: "
+                android:text="Total Attempts: "
                 android:textSize="9dp"
                 android:textStyle="bold"
                 android:textColor="@color/white"

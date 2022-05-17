@@ -144,6 +144,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:ems="8"
+                    android:drawableLeft="@drawable/calender_black"
                     android:inputType="textPersonName"
                     android:textSize="15sp"
                     android:textStyle="bold" />

@@ -29,6 +29,7 @@ class ViewProfile_Mentor : AppCompatActivity() {
         username.setText(""+uname)
         emailid.setText(""+email)
         dateOfBirth.setText(""+dob)
+        System.out.println("Date of Birth in view profile is $dob")
         contact.setText(""+cont)
 
         val backButton: Button = findViewById(R.id.backButton)

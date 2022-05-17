@@ -86,4 +86,8 @@ class QuizQuestionCreation : AppCompatActivity() {
             }
         }
     }
+
+    override fun onBackPressed() {
+        Toast.makeText(this,"Quiz Information Added! Can't go back", Toast.LENGTH_SHORT).show()
+    }
 }

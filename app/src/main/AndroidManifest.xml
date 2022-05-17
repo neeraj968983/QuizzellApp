@@ -11,7 +11,9 @@
         android:roundIcon="@mipmap/app_logo_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Quizellapp">
-        <activity android:name=".QuestionBook"></activity>
+        <activity android:name=".NotesView"></activity>
+        <activity android:name=".NotePad" />
+        <activity android:name=".QuestionBook" />
         <activity android:name=".RankingCategory" />
         <activity android:name=".RankingPage" />
         <activity android:name=".ResultPage" />

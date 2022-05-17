@@ -254,7 +254,7 @@
 
         <TextView
             android:id="@+id/guideline"
-            android:layout_width="265dp"
+            android:layout_width="250dp"
             android:layout_height="51dp"
             android:text="Guidelines:"
             android:textColor="@color/black"
@@ -266,6 +266,21 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.6"
             app:layout_constraintHorizontal_bias="0.15"/>
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/SeeNotes"
+        android:enabled="false"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:text=" See Notes"
+        android:textSize="10dp"
+        android:backgroundTint="@color/green"
+        android:drawableLeft="@drawable/view_eye"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.59"
+        app:layout_constraintHorizontal_bias="0.82"/>
 
         <TextView
             android:id="@+id/guidelinebox"

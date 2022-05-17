@@ -11,6 +11,7 @@
     <string name="name">name</string>
     <string name="password">password</string>
     <string name="get_otp"><u>Get OTP</u></string>
+    <string name="enter_your_notes_here"><u>Enter Your Notes here....</u></string>
 
     <string-array name="Category">
         <item>Aptitude</item>

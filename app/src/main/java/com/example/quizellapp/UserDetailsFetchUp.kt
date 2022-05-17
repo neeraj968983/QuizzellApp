@@ -27,7 +27,7 @@ class UserDetailsFetchUp(context: Context) : SQLiteOpenHelper(context, databaseN
     fun getDetails(userdata:String?):Array<Any> {
         var emailid:String = ""
         var contact:Long = 0
-        var dateOfBirth:Long = 0
+        var dateOfBirth:String = ""
         val db = this.readableDatabase
         val selection = "$COL1 = ?"
         val selectionArgs = arrayOf(userdata)
@@ -35,7 +35,7 @@ class UserDetailsFetchUp(context: Context) : SQLiteOpenHelper(context, databaseN
 
         if (cursor.moveToNext()) {
             emailid = cursor.getString(1)
-            dateOfBirth = cursor.getLong(2)
+            dateOfBirth = cursor.getString(2)
             contact = cursor.getLong(3)
         }
         return arrayOf(emailid,dateOfBirth,contact)

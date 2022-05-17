@@ -237,6 +237,7 @@
                     <EditText
                         android:id="@+id/DOB"
                         android:ems="10"
+                        android:drawableLeft="@drawable/calender_black"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="16dp"

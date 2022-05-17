@@ -77,7 +77,7 @@ class DatabaseHelperClass(context: Context) : SQLiteOpenHelper(context, database
 
     fun fetchLocalData(uname:String?):Array<Any>{
         var emID = ""
-        var birth:Long = 0
+        var birth:String = ""
         var contct:Long = 0
 
         val db = this.readableDatabase
@@ -87,7 +87,7 @@ class DatabaseHelperClass(context: Context) : SQLiteOpenHelper(context, database
         val cursor = db.query(tableName,null,selection,selectionArgs,null,null,null)
         if(cursor.moveToNext()){
             emID = cursor.getString(1)
-            birth = cursor.getLong(2)
+            birth = cursor.getString(2)
             contct = cursor.getLong(3)
 
         }
