@@ -20,7 +20,7 @@ class NotesView : AppCompatActivity() {
         val category:TextView = findViewById(R.id.Category)
         val mentorUserName:TextView = findViewById(R.id.MentorUserName)
         val notes:TextView = findViewById(R.id.Notes)
-        val proceed: Button = findViewById(R.id.Proceed)
+        val ready: Button = findViewById(R.id.Ready)
 
         var quizName = i.getStringExtra("QuizName")
         var AttemptsLeft = i.getIntExtra("AttemptsLeft",0)
@@ -32,17 +32,8 @@ class NotesView : AppCompatActivity() {
         mentorUserName.setText("-"+pageDetails.MentorName)
         notes.setText(""+pageDetails.Notes)
 
-        proceed.setOnClickListener{
-            if(AttemptsLeft!=0){
-                var intent: Intent = Intent(this,QuizTestPage::class.java)
-                intent.putExtra("QuizName",i.getStringExtra("QuizName"))
-                intent.putExtra("username",i.getStringExtra("username"))
-                startActivity(intent)
-            }
-            else{
-                Toast.makeText(this, "Your Attempts exhausted! You can't give this quiz", Toast.LENGTH_LONG).show()
-            }
-
+        ready.setOnClickListener{
+            onBackPressed()
         }
 
 

@@ -15,7 +15,8 @@ class AccounntSummaryDatabase2(context: Context):SQLiteOpenHelper(context, datab
             COL5 + " Integer, " +
             COL6 + " Integer, " +
             COL7 + " Text, " +
-            COL8 + " Text) ")
+            COL8 + " Text, " +
+            COL9 + " Text) ")
 
     private val dropTable = ("Drop table IF EXISTS ${tablename}")
 
@@ -31,6 +32,7 @@ class AccounntSummaryDatabase2(context: Context):SQLiteOpenHelper(context, datab
         private var COL6 = "PaidQuizTotalAttempt"
         private var COL7 = "QuizType"
         private var COL8 = "QuizName"
+        private var COL9 = "FreeQuizTotalAttempt"
     }
 
     override fun onCreate(db: SQLiteDatabase?) {
@@ -45,6 +47,7 @@ class AccounntSummaryDatabase2(context: Context):SQLiteOpenHelper(context, datab
 
     fun addDetailsToAcoountSummary2(accountSummaryDataClass2: AccountSummaryDataClass2){
         val db = this.writableDatabase
+        System.out.println("Database entry $accountSummaryDataClass2")
         val values = ContentValues()
         values.put(COL1,accountSummaryDataClass2.candidatename)
         values.put(COL2,accountSummaryDataClass2.mentorname)
@@ -71,6 +74,19 @@ class AccounntSummaryDatabase2(context: Context):SQLiteOpenHelper(context, datab
         db.close()
 
     }
+    fun getFreeQuizTotalAttempt(candidatename:String?,quizname:String?):Int{
+        var Attempts:Int = 0
+        val db = this.readableDatabase
+        val selection = "$COL1 = ? AND $COL8 = ?"
+        val selectionArgs = arrayOf(candidatename,quizname)
+        val cursor = db.query(tablename,null,selection,selectionArgs,null,null,null)
+        if(cursor.moveToNext()){
+            Attempts = cursor.getInt(8)
+        }
+        return Attempts
+        db.close()
+
+    }
     fun addAttempt(candidatename:String?,quizname:String?, attempt:Int){
 
         val db = this.writableDatabase
@@ -78,6 +94,18 @@ class AccounntSummaryDatabase2(context: Context):SQLiteOpenHelper(context, datab
         val selectionArgs = arrayOf(candidatename,quizname)
         val values = ContentValues()
         values.put(COL6,attempt)
+
+        db.update(tablename,values,selection,selectionArgs)
+        db.close()
+    }
+
+    fun addFreeAttempt(candidatename:String?,quizname:String?, attempt:Int){
+
+        val db = this.writableDatabase
+        val selection = "$COL1 = ? AND $COL8 = ?"
+        val selectionArgs = arrayOf(candidatename,quizname)
+        val values = ContentValues()
+        values.put(COL9,attempt)
 
         db.update(tablename,values,selection,selectionArgs)
         db.close()
@@ -96,6 +124,7 @@ class AccounntSummaryDatabase2(context: Context):SQLiteOpenHelper(context, datab
         var freeQuizTotalStudentAttempted:Int = 0
         var paidQuizTotalStudentAttempted:Int = 0
         var paidTotalAttempts:Int = 0
+        var freeTotalAttempts:Int = 0
         val db = this.readableDatabase
         val selection = "$COL2 = ?"
         val selectionArgs = arrayOf(mentorname)
@@ -104,8 +133,11 @@ class AccounntSummaryDatabase2(context: Context):SQLiteOpenHelper(context, datab
             freeQuizTotalStudentAttempted += cursor.getInt(3)
             paidQuizTotalStudentAttempted += cursor.getInt(4)
             paidTotalAttempts += cursor.getInt(5)
+            freeTotalAttempts += cursor.getInt(8)
+
         }
-        return arrayOf(freeQuizTotalStudentAttempted,paidQuizTotalStudentAttempted,paidTotalAttempts)
+        System.out.println("Paid total attempts $paidTotalAttempts............//")
+        return arrayOf(freeQuizTotalStudentAttempted,paidQuizTotalStudentAttempted,paidTotalAttempts,freeTotalAttempts)
         db.close()
     }
     fun getAttemptsByList(quizname: String?):Int{
@@ -135,7 +167,7 @@ class AccounntSummaryDatabase2(context: Context):SQLiteOpenHelper(context, datab
         val cursor = db.query(tablename,null,selection,selectionArgs,null,null,null)
         while (cursor.moveToNext()){
             if(cursor.getString(6).equals("Free")){
-                attemptsGiven = 0
+                attemptsGiven = cursor.getInt(8)
             }
             else{
                 attemptsGiven = cursor.getInt(5)

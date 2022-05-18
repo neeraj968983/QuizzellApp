@@ -13,7 +13,7 @@
         android:layout_gravity="center"
         android:layout_marginStart="25dp"
         android:layout_marginEnd="25dp"
-        android:background="@drawable/quizlistborder"
+        android:background="@color/white"
         android:backgroundTint="@color/white"
         android:elevation="20dp"
         android:orientation="vertical"
@@ -46,24 +46,86 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             android:paddingLeft="10dp"
             android:paddingRight="10dp">
 
 
-
-
             <LinearLayout
+                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="5dp"/>
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/whiteShade">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center">
+                    <Spinner
+                        android:id="@+id/category"
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"/>
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/ShowRate"
+                        android:text="Show Rate"
+                        android:textSize="10dp"
+                        android:layout_width="100dp"
+                        android:layout_height="30dp"
+                        android:paddingLeft="20dp"
+                        android:textColor="@color/black"
+                        android:backgroundTint="@color/white"
+                        app:strokeWidth="1dp"
+                        app:strokeColor="@color/black"
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginBottom="10dp">
+                    <TextView
+                        android:id="@+id/CashRateLabel"
+                        android:text="Cash Rate: "
+                        android:textSize="10dp"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:id="@+id/CashRate"
+                        android:text="0.0"
+                        android:textColor="@color/black"
+                        android:textSize="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:id="@+id/CoinRateLabel"
+                        android:text="Coin Rate: "
+                        android:textSize="10dp"
+                        android:layout_marginLeft="40dp"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:id="@+id/CoinRate"
+                        android:text="0"
+                        android:textColor="@color/black"
+                        android:textSize="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+
+
+            </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <TextView
                     android:id="@+id/CashRule"
-                    android:text="- Cash: Total question in quiz * quiz category price (default:1)"
+                    android:text="- Cash: Total question in quiz * cash rate of quiz * number of students"
                     android:textSize="10dp"
                     android:textColor="@color/black"
                     android:layout_width="wrap_content"
@@ -79,7 +141,7 @@
                 android:orientation="horizontal">
                 <TextView
                     android:id="@+id/CoinRule"
-                    android:text="- Coins: Total attempts by student * 5 "
+                    android:text="- Coins: Total attempts of students * coin rate of quiz "
                     android:textSize="10dp"
                     android:textColor="@color/black"
                     android:layout_width="wrap_content"
@@ -111,7 +173,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center">
+            android:gravity="center"
+            android:layout_marginTop="5dp">
             <TextView
                 android:id="@+id/OK"
                 android:text="OK"

@@ -39,17 +39,20 @@ internal class CustomAdapter(private var CArank: List<Int>, private var CAUserNa
             holder.score.setTextSize(20F)
         }
         if(position == 0){
-            holder.rank.setTextColor(Color.parseColor("#FFD700"))
+            holder.rank.setBackgroundResource(R.drawable.medalforfirst)
+            holder.rank.setText("")
             holder.username.setTextColor(Color.parseColor("#FFD700"))
             holder.score.setTextColor(Color.parseColor("#FFD700"))
         }
         if(position == 1){
-            holder.rank.setTextColor(Color.parseColor("#C0C0C0"))
+            holder.rank.setBackgroundResource(R.drawable.medalforsecond)
+            holder.rank.setText("")
             holder.username.setTextColor(Color.parseColor("#C0C0C0"))
             holder.score.setTextColor(Color.parseColor("#C0C0C0"))
         }
         if(position == 2){
-            holder.rank.setTextColor(Color.parseColor("#CD7F32"))
+            holder.rank.setBackgroundResource(R.drawable.medalforthird)
+            holder.rank.setText("")
             holder.username.setTextColor(Color.parseColor("#CD7F32"))
             holder.score.setTextColor(Color.parseColor("#CD7F32"))
         }

@@ -124,6 +124,20 @@ class QuizInfoDatabase(context: Context) : SQLiteOpenHelper(context, databaseNam
         db.close()
     }
 
+    fun getMentorUserName(quizzName:String?):String{
+        var mentorUserName = ""
+        var db = this.readableDatabase
+        var selection = "$COL3 = ?"
+        var selectionArgs = arrayOf(quizzName)
+
+        var cursor = db.query(tableName,null,selection,selectionArgs,null,null,null)
+        if(cursor.moveToNext()){
+            mentorUserName = cursor.getString(0)
+        }
+        return mentorUserName
+        db.close()
+    }
+
     fun totalQuestions(quizname:String?):Int{
         var db = this.readableDatabase
         var selection = "$COL3 = ?"
@@ -254,5 +268,15 @@ class QuizInfoDatabase(context: Context) : SQLiteOpenHelper(context, databaseNam
         return quizWithAttemptLeft
     }
 
-
+    fun getPaidQuizzesNameAndCategoryList(username:String,quizType:String):ArrayList<PaidQuizNameAndCategory>{
+        var quizNamesAndCategory:ArrayList<PaidQuizNameAndCategory> = ArrayList()
+        val db = this.readableDatabase
+        val selection = "$COL1 = ? AND $COL10 = ?"
+        val selectionArgs = arrayOf(username,quizType)
+        val cursor = db.query(tableName,null,selection,selectionArgs,null,null,null)
+        while (cursor.moveToNext()){
+            quizNamesAndCategory.add(PaidQuizNameAndCategory(cursor.getString(2),cursor.getString(3)))
+        }
+        return quizNamesAndCategory
+    }
 }

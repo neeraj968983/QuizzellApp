@@ -203,4 +203,16 @@ class ScoreDatabase(context:Context): SQLiteOpenHelper(context, databaseName, nu
         return quizNameList
     }
 
+    fun getStudentNamesOfPaidQuiz(quizname:String):ArrayList<String>{
+        var studentList:ArrayList<String> = ArrayList()
+        val db = this.readableDatabase
+        val selection = "$COL2 = ?"
+        val selectionArgs = arrayOf(quizname)
+        val cursor = db.query(tableName,null,selection,selectionArgs,null,null,null)
+        while (cursor.moveToNext()){
+            studentList.add(cursor.getString(0))
+        }
+        return studentList
+    }
+
 }

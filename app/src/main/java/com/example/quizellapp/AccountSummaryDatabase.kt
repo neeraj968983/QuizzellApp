@@ -79,6 +79,7 @@ class AccountSummaryDatabase(context:Context):SQLiteOpenHelper(context, database
         var cursor = db.query(tablename,null,selection,selectionArgs,null,null,null)
         while (cursor.moveToNext()){
             totalfreequiz += cursor.getInt(2)
+            System.out.println("Free quiz: $totalfreequiz ............//")
             totalpaidquiz += cursor.getInt(3)
         }
         return arrayOf(totalfreequiz,totalpaidquiz,(totalfreequiz+totalpaidquiz))
@@ -94,11 +95,11 @@ class AccountSummaryDatabase(context:Context):SQLiteOpenHelper(context, database
         var selectionArgs = arrayOf(mentorname)
         var cursor = db.query(tablename,null,selection,selectionArgs,null,null,null)
         while (cursor.moveToNext()){
-            cash.add(cursor.getDouble(8))
+            cash.add(cursor.getDouble(7))
             quizname.add(cursor.getString(11))
-            coin = coin + cursor.getInt(9)
-            System.out.println("Cursor moves times")
+            coin = cursor.getInt(8)
         }
+        System.out.println("Coin is $coin")
         var data= cashCoin(cash,coin,quizname)
         return data
         db.close()
@@ -128,5 +129,18 @@ class AccountSummaryDatabase(context:Context):SQLiteOpenHelper(context, database
         }
         db.close()
         return quizList
+    }
+
+    fun getCashAmount(quizname:String):Double{
+        var quizValue:Double = 0.0
+        val db = this.readableDatabase
+        val selection = "$COL13 = ?"
+        val selectionArgs = arrayOf(quizname)
+        val cursor = db.query(tablename,null,selection,selectionArgs,null,null,null)
+        if (cursor.moveToNext()){
+            quizValue = cursor.getDouble(7)
+        }
+        return quizValue
+        db.close()
     }
 }

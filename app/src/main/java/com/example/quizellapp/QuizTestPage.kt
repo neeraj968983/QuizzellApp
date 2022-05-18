@@ -103,7 +103,7 @@ class QuizTestPage : AppCompatActivity() {
 
 
         if (totalQuestion>count){
-            ques.setText("Question ${count+1}:" + questions[count].quest)
+            ques.setText("Question ${count+1}: \n" + questions[count].quest)
             op1.setText("" + questions[count].option1)
             op2.setText("" + questions[count].option2)
             op3.setText("" + questions[count].option3)
@@ -246,7 +246,7 @@ class QuizTestPage : AppCompatActivity() {
             if(totalQuestion-1>count){
                 count++
                 Handler(Looper.getMainLooper()).postDelayed({
-                    ques.setText("" + questions[count].quest)
+                    ques.setText("Question ${count+1}: \n" + questions[count].quest)
                     op1.setText("" + questions[count].option1)
                     op2.setText("" + questions[count].option2)
                     op3.setText("" + questions[count].option3)

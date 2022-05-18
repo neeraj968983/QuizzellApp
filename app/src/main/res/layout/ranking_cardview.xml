@@ -21,7 +21,7 @@
 
         <TextView
             android:id="@+id/Rank"
-            android:layout_width="100dp"
+            android:layout_width="60dp"
             android:layout_height="match_parent"
             android:text="1"
             android:textSize="18dp"
@@ -35,6 +35,7 @@
         <TextView
             android:id="@+id/Username"
             android:layout_width="220dp"
+            android:layout_marginLeft="40dp"
             android:layout_height="match_parent"
             android:text="Neeraj Singh Jadon"
             android:textSize="18dp"

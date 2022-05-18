@@ -64,6 +64,7 @@ class QuizInfo : AppCompatActivity() {
 
         var totalQuestions = quizInfoDatabase.totalQuestions(quizname)
 
+        var mentorUserName:String = quizInfoDatabase.getMentorUserName(quizname)
 
         var (a,b,c,d,e) = quizInfoDatabase.quizInformation(quizname)
         mentorName.setText(""+a)
@@ -90,21 +91,29 @@ class QuizInfo : AppCompatActivity() {
 //                dataFromQuizInfo = AccountSummaryDataClass2(username,a.toString(),b.toString(),1,0,c.toString(),quizname)
             }
             else{
+                System.out.println("Still Attempts left.......................//")
                 if (c.toString().equals("Free")){
+                    System.out.println("Free quiz")
                     if(accounntSummaryDatabase2.checkCandidate(username,quizname)){
-
+                        System.out.println("User Already there! ${accounntSummaryDatabase2.checkCandidate(username,quizname)}")
                     }
                     else {
-                        dataFromQuizInfo = AccountSummaryDataClass2(username, a.toString(), b.toString(), 1, 0, c.toString(), quizname)
+                        System.out.println("New User.......")
+                        dataFromQuizInfo = AccountSummaryDataClass2(username, mentorUserName, b.toString(), 1, 0, c.toString(), quizname)
                         accounntSummaryDatabase2.addDetailsToAcoountSummary2(dataFromQuizInfo)
+                        System.out.println(dataFromQuizInfo)
                     }
+                    var freequizattemp: Int = accounntSummaryDatabase2.getFreeQuizTotalAttempt(username,quizname)
+                    freequizattemp = freequizattemp+1
+                    System.out.println("Free quiz Attempt: $freequizattemp")
+                    accounntSummaryDatabase2.addFreeAttempt(username,quizname,freequizattemp)
                 }
                 else{
                     if(accounntSummaryDatabase2.checkCandidate(username,quizname)){
 
                     }
                     else{
-                        dataFromQuizInfo = AccountSummaryDataClass2(username,a.toString(),b.toString(),0,1,c.toString(),quizname)
+                        dataFromQuizInfo = AccountSummaryDataClass2(username,mentorUserName,b.toString(),0,1,c.toString(),quizname)
                         accounntSummaryDatabase2.addDetailsToAcoountSummary2(dataFromQuizInfo)
                     }
                     var paidquizattemp: Int = accounntSummaryDatabase2.getPaidQuizTotalAttempt(username,quizname)
