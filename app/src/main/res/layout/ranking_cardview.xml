@@ -26,8 +26,6 @@
             android:text="1"
             android:textSize="18dp"
             android:textColor="@color/white"
-            android:paddingRight="70dp"
-            android:paddingLeft="20dp"
             android:textAlignment="center"
             android:gravity="center"
             />
@@ -35,7 +33,7 @@
         <TextView
             android:id="@+id/Username"
             android:layout_width="220dp"
-            android:layout_marginLeft="40dp"
+            android:paddingLeft="40dp"
             android:layout_height="match_parent"
             android:text="Neeraj Singh Jadon"
             android:textSize="18dp"

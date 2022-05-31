@@ -28,13 +28,13 @@ internal class CustomAdapter(private var CArank: List<Int>, private var CAUserNa
         val UserName = CAUserName[position]
         val Score = CAScore[position]
         if (UserName.equals(userName)){
-            holder.rank.setBackgroundColor(Color.parseColor("#491967"))
+            holder.rank.setBackgroundColor(Color.parseColor("#6E05AF"))
             holder.rank.setTypeface(Typeface.DEFAULT_BOLD)
             holder.rank.setTextSize(20F)
-            holder.username.setBackgroundColor(Color.parseColor("#491967"))
+            holder.username.setBackgroundColor(Color.parseColor("#6E05AF"))
             holder.username.setTypeface(Typeface.DEFAULT_BOLD)
             holder.username.setTextSize(20F)
-            holder.score.setBackgroundColor(Color.parseColor("#491967"))
+            holder.score.setBackgroundColor(Color.parseColor("#6E05AF"))
             holder.score.setTypeface(Typeface.DEFAULT_BOLD)
             holder.score.setTextSize(20F)
         }
@@ -56,7 +56,9 @@ internal class CustomAdapter(private var CArank: List<Int>, private var CAUserNa
             holder.username.setTextColor(Color.parseColor("#CD7F32"))
             holder.score.setTextColor(Color.parseColor("#CD7F32"))
         }
-        holder.rank.text = Rank.toString()
+        if (position>2){
+            holder.rank.text = Rank.toString()
+        }
         holder.username.text = UserName
         holder.score.text = Score.toString()
     }
